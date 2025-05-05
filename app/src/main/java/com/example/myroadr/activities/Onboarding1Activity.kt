@@ -3,6 +3,7 @@ package com.example.myroadr.activities
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import com.example.myroadr.MainActivity
 import com.example.myroadr.R
 import com.example.myroadr.databinding.ActivityOnboarding1Binding
 import com.example.myroadr.databinding.ActivitySplashScreenBinding
@@ -17,7 +18,19 @@ class Onboarding1Activity : AppCompatActivity() {
         binding = ActivityOnboarding1Binding.inflate(layoutInflater)
         setContentView(binding.root)
         binding.skipButton.setOnClickListener {
+            val intent = Intent(this,MainActivity::class.java)
+            startActivity(intent)
+            finish()
 
         }
+        binding.nextButton.setOnClickListener {
+            val intent = Intent(this,Onboarding2Activity::class.java)
+            startActivity(intent)
+            finish()
+        }
+
     }
+
+
+
 }
