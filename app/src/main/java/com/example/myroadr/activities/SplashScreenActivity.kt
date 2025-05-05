@@ -11,15 +11,16 @@ import com.example.myroadr.databinding.ActivitySplashScreenBinding
 
 class SplashScreenActivity : AppCompatActivity() {
     private lateinit var binding: ActivitySplashScreenBinding
-    private val SPLASH_DELAY: Long = 2000
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
         binding = ActivitySplashScreenBinding.inflate(layoutInflater)
         setContentView(binding.root)
-        Handler(Looper.getMainLooper()).postDelayed({
+        binding.getStartedButton.setOnClickListener {
             navigateToMainActivity()
-        }, SPLASH_DELAY)
+
+        }
+
     }
 
     private fun navigateToMainActivity() {
