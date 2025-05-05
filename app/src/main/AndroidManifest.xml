@@ -31,9 +31,11 @@
         android:theme="@style/Theme.MyRoadr"
         tools:targetApi="31">
         <activity
-            android:name=".MainActivity"
+            android:name=".activities.Onboarding1Activity"
             android:exported="false" />
-        <!-- API Key for Google Maps -->
+        <activity
+            android:name=".MainActivity"
+            android:exported="false" /> <!-- API Key for Google Maps -->
         <meta-data
             android:name="com.google.android.geo.API_KEY"
             android:value="@string/google_map_api" /> <!-- autres activités, services, etc. -->

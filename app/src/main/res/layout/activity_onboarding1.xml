@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white">
+
+    <!-- Top Image -->
+    <ImageView
+        android:id="@+id/onboardingImage"
+        android:layout_width="match_parent"
+        android:layout_height="450dp"
+        android:src="@drawable/locate"
+        android:scaleType="centerCrop"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+   />
+
+    <!-- Title -->
+    <TextView
+        android:id="@+id/titleText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Locate"
+        android:textColor="#3D003E"
+        android:textSize="32sp"
+        android:textStyle="bold"
+        android:gravity="center"
+        android:fontFamily="@font/montserratsemibold"
+        android:lineSpacingExtra="8sp"
+        app:layout_constraintTop_toBottomOf="@id/onboardingImage"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginTop="20dp"/>
+
+    <!-- Description -->
+    <TextView
+        android:id="@+id/descriptionText"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia."
+        android:textColor="#666666"
+        android:textSize="21sp"
+        android:gravity="center"
+        android:fontFamily="@font/montserratregular"
+        android:lineSpacingExtra="4sp"
+        app:layout_constraintTop_toBottomOf="@id/titleText"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginStart="40dp"
+        android:layout_marginEnd="40dp"
+        android:layout_marginTop="15dp"/>
+
+    <!-- Bottom Buttons -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:padding="40dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent">
+
+        <!-- Skip Button (Left Corner) -->
+        <TextView
+            android:id="@+id/skipButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Skip"
+            android:textColor="#3D003E"
+            android:fontFamily="@font/montserratregular"
+            android:textSize="15sp"
+            android:layout_weight="1"
+            android:gravity="start"
+            android:padding="14dp"/>
+
+        <!-- Next Button (Right Corner) -->
+        <TextView
+            android:id="@+id/nextButton"
+            android:layout_width="wrap_content"
+            android:layout_height="50dp"
+            android:text="Next"
+            android:textColor="#3D003E"
+            android:fontFamily="@font/montserratsemibold"
+            android:background="@drawable/rounded_button"
+            android:textSize="15sp"
+            android:padding="14dp"
+            android:textAlignment="textEnd"
+            android:layout_weight="1"
+            />
+    </LinearLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
