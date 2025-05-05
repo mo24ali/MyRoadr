@@ -1,16 +1,193 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@android:color/holo_blue_light">
+    android:background="@drawable/backgroundsplash"
+    android:orientation="vertical"
+    android:padding="24dp">
 
+    <!-- Section Bonjour -->
     <TextView
-        android:layout_gravity="center"
-        android:text="Accueil Roadr"
-        android:textSize="24sp"
+        android:text="Hello John,"
+        android:textSize="32sp"
+        android:textColor="#3D003E"
         android:textStyle="bold"
-        android:textColor="@android:color/white"
+        android:layout_marginTop="30dp"
+        android:fontFamily="@font/montserratsemibold"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content" />
 
-</FrameLayout>
+    <TextView
+        android:text="Wanna take a ride today?"
+        android:textSize="18sp"
+        android:textColor="#3D003E"
+        android:fontFamily="@font/montserratregular"
+        android:layout_marginBottom="24dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
+    <!-- Carte Météo -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="16dp"
+        android:background="@drawable/card_background"
+        android:elevation="4dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center_vertical">
+
+            <ImageView
+                android:layout_width="96dp"
+                android:layout_height="96dp"
+                android:src="@drawable/cloudly" /> <!-- ajoute ton image météo ici -->
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:orientation="vertical"
+                android:layout_marginStart="16dp">
+
+                <TextView
+                    android:text="18°  Cloudy"
+                    android:textColor="#3D003E"
+                    android:textSize="24sp"
+                    android:textStyle="bold"
+                    android:fontFamily="@font/montserratsemibold"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+
+                <TextView
+                    android:text="Marbella Dr"
+                    android:textColor="#3D003E"
+                    android:textSize="18sp"
+                    android:fontFamily="@font/montserratregular"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+            </LinearLayout>
+        </LinearLayout>
+
+        <TextView
+            android:text="28 September, Wednesday"
+            android:textColor="#1E1E1E"
+            android:textSize="18sp"
+            android:fontFamily="@font/montserratregular"
+            android:layout_marginTop="16dp"
+            android:layout_gravity="center_horizontal"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+    </LinearLayout>
+    <!-- Section Header -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginTop="24dp"
+        android:layout_marginBottom="16dp"
+        android:gravity="center_vertical"
+        android:weightSum="2">
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Near You"
+            android:textColor="#1E1E1E"
+            android:textSize="21sp"
+            android:textStyle="bold"
+            android:fontFamily="@font/montserratsemibold"/>
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="end"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Browse Map"
+                android:textColor="#3D003E"
+                android:textSize="18sp"
+                android:fontFamily="@font/montserratregular"/>
+
+            <ImageView
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:layout_marginStart="4dp"
+                android:src="@drawable/chevron_left" />
+        </LinearLayout>
+    </LinearLayout>
+
+    <!-- Card Bike Item -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="16dp"
+        android:layout_marginBottom="24dp"
+        android:background="@drawable/bg_card_bike"
+        android:elevation="4dp">
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="120dp"
+            android:scaleType="fitCenter"
+            android:src="@drawable/bike_haibike" />
+
+        <!-- Badge Distance -->
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="36dp"
+            android:orientation="horizontal"
+            android:background="@drawable/bg_badge_distance"
+            android:layout_marginTop="12dp"
+            android:paddingHorizontal="16dp"
+            android:gravity="center_vertical">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Distance"
+                android:textSize="14sp"
+                android:textColor="#3D003E"
+                android:fontFamily="@font/montserratregular"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text=" 150 m"
+                android:textSize="21sp"
+                android:textColor="#1E1E1E"
+                android:textStyle="bold"
+                android:fontFamily="@font/montserratsemibold"/>
+        </LinearLayout>
+
+        <!-- Bike Name -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Haibike Sduro FullSeven"
+            android:textColor="#3D003E"
+            android:textSize="16sp"
+            android:layout_marginTop="12dp"
+            android:fontFamily="@font/montserratregular"/>
+
+        <!-- Availability -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="1 Available"
+            android:textSize="18sp"
+            android:textColor="#3D003E"
+            android:fontFamily="@font/montserratsemibold"/>
+    </LinearLayout>
+
+</LinearLayout>

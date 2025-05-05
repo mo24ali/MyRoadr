@@ -19,13 +19,13 @@ class MainActivity : AppCompatActivity() {
 
         replaceFragment(HomeFragment())
 
-        binding.bottomNav.setOnItemSelectedListener {
-            when (it.itemId) {
-                R.id.nav_home -> replaceFragment(HomeFragment())
-                R.id.nav_events -> replaceFragment(EventDiscoveryFragment())
-            }
-            true
-        }
+//        binding.bottomNav.setOnItemSelectedListener {
+//            when (it.itemId) {
+//                R.id.nav_home -> replaceFragment(HomeFragment())
+//                R.id.nav_grid -> replaceFragment(EventDiscoveryFragment())
+//            }
+//            true
+//        }
     }
 
     private fun replaceFragment(fragment: Fragment) {
