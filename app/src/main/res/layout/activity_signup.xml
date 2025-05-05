@@ -16,7 +16,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Login Your Account"
+            android:text="Create your Account"
             android:textSize="38sp"
             android:fontFamily="@font/montserratsemibold"
             android:textColor="#ffffff"
@@ -48,6 +48,29 @@
                 android:textColorHint="#3D003E"/>
         </com.google.android.material.textfield.TextInputLayout>
 
+        <!-- Email Input -->
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="16dp"
+            android:background="@drawable/bg_input_white"
+            android:paddingHorizontal="16dp"
+            app:boxBackgroundMode="none"
+            app:hintTextColor="@color/black"
+            app:startIconDrawable="@drawable/email_icon"
+            app:startIconTint="#3D003E"
+            android:layout_gravity="center">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:layout_width="match_parent"
+                android:layout_height="56dp"
+                android:hint="Enter Your Email"
+                android:fontFamily="@font/montserratregular"
+                android:background="@android:color/transparent"
+                android:inputType="textEmailAddress"
+                android:textColor="#3D003E"
+                android:textColorHint="#3D003E"/>
+        </com.google.android.material.textfield.TextInputLayout>
 
         <!-- Password Input -->
         <com.google.android.material.textfield.TextInputLayout
@@ -80,7 +103,7 @@
             android:id="@+id/registerButton"
             android:layout_width="match_parent"
             android:layout_height="60dp"
-            android:text="Login"
+            android:text="Register"
             android:textColor="#3D003E"
             android:fontFamily="@font/montserratsemibold"
             android:textSize="18sp"
@@ -92,7 +115,7 @@
             android:id="@+id/signInText"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Create New Account? Sign up"
+            android:text="Already Have An Account? Sign In"
             android:fontFamily="@font/montserratsemibold"
             android:textColor="#3D003E"
             android:textSize="14sp"/>
