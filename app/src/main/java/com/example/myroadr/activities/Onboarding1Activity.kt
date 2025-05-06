@@ -18,13 +18,13 @@ class Onboarding1Activity : AppCompatActivity() {
         binding = ActivityOnboarding1Binding.inflate(layoutInflater)
         setContentView(binding.root)
         binding.skipButton.setOnClickListener {
-            val intent = Intent(this,MainActivity::class.java)
+            val intent = Intent(this,LoginActivity::class.java)
             startActivity(intent)
             finish()
 
         }
         binding.nextButton.setOnClickListener {
-            val intent = Intent(this,Onboarding2Activity::class.java)
+            val intent = Intent(this,LoginActivity::class.java)
             startActivity(intent)
             finish()
         }

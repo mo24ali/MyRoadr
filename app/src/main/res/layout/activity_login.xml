@@ -30,7 +30,7 @@
             android:layout_height="wrap_content"
             android:layout_marginBottom="16dp"
             android:background="@drawable/bg_input_white"
-            android:paddingHorizontal="16dp"
+            android:paddingHorizontal="10dp"
             app:boxBackgroundMode="none"
             app:hintTextColor="@color/black"
             app:startIconDrawable="@drawable/ic_person"
@@ -39,7 +39,7 @@
 
             <com.google.android.material.textfield.TextInputEditText
                 android:layout_width="match_parent"
-                android:layout_height="56dp"
+                android:layout_height="50dp"
                 android:hint="Full Name"
                 android:fontFamily="@font/montserratregular"
                 android:background="@android:color/transparent"
@@ -55,7 +55,7 @@
             android:layout_height="wrap_content"
             android:layout_marginBottom="10dp"
             android:background="@drawable/bg_input_white"
-            android:paddingHorizontal="16dp"
+            android:paddingHorizontal="10dp"
             app:boxBackgroundMode="none"
             app:endIconMode="password_toggle"
             app:hintTextColor="@color/black"
@@ -65,7 +65,7 @@
 
             <com.google.android.material.textfield.TextInputEditText
                 android:layout_width="match_parent"
-                android:layout_height="56dp"
+                android:layout_height="50dp"
                 android:hint="Password"
                 android:fontFamily="@font/montserratregular"
                 android:background="@android:color/transparent"

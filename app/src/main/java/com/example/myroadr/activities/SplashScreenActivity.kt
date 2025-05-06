@@ -21,6 +21,11 @@ class SplashScreenActivity : AppCompatActivity() {
             navigateToMainActivity()
         }
         binding.loginText.text= Html.fromHtml("Already have an account? <b>Log in</b>", Html.FROM_HTML_MODE_LEGACY)
+        binding.loginText.setOnClickListener {
+            val intent = Intent(this,LoginActivity::class.java)
+            startActivity(intent)
+            finish()
+        }
     }
 
     private fun navigateToMainActivity() {
