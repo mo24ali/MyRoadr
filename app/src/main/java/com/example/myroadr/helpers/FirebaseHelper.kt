@@ -9,12 +9,9 @@ import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.storage.FirebaseStorage
 
 object FirebaseHelper {
-
     private val auth: FirebaseAuth = FirebaseAuth.getInstance()
     private val db: FirebaseFirestore = FirebaseFirestore.getInstance()
     private val storage: FirebaseStorage = FirebaseStorage.getInstance()
-
-    // 🔐 Auth - Register
     fun registerUser(email: String, password: String, activity: Activity, onSuccess: (FirebaseUser?) -> Unit) {
         auth.createUserWithEmailAndPassword(email, password)
             .addOnCompleteListener(activity) { task ->
@@ -25,8 +22,6 @@ object FirebaseHelper {
                 }
             }
     }
-
-    // 🔐 Auth - Login
     fun loginUser(email: String, password: String, activity: Activity, onSuccess: (FirebaseUser?) -> Unit) {
         auth.signInWithEmailAndPassword(email, password)
             .addOnCompleteListener(activity) { task ->
@@ -38,7 +33,6 @@ object FirebaseHelper {
             }
     }
 
-    // 🔐 Get current user
     fun getCurrentUser(): FirebaseUser? {
         return auth.currentUser
     }
@@ -48,15 +42,12 @@ object FirebaseHelper {
         auth.signOut()
     }
 
-    // 📝 Ajouter données dans Firestore
     fun addToFirestore(collection: String, data: Map<String, Any>, onSuccess: () -> Unit, onFailure: (Exception) -> Unit) {
         db.collection(collection)
             .add(data)
             .addOnSuccessListener { onSuccess() }
             .addOnFailureListener { e -> onFailure(e) }
     }
-
-    // 📥 Uploader un fichier dans Firebase Storage
     fun uploadFile(path: String, fileBytes: ByteArray, onSuccess: (String) -> Unit, onFailure: (Exception) -> Unit) {
         val ref = storage.reference.child(path)
         val uploadTask = ref.putBytes(fileBytes)
@@ -71,8 +62,6 @@ object FirebaseHelper {
                 onFailure(e)
             }
     }
-
-    // 🔍 Lire un document Firestore
     fun getDocument(collection: String, documentId: String, onSuccess: (Map<String, Any>?) -> Unit, onFailure: (Exception) -> Unit) {
         db.collection(collection).document(documentId)
             .get()
@@ -84,7 +73,6 @@ object FirebaseHelper {
             }
     }
 
-    // 🔐 Envoyer un email de réinitialisation du mot de passe
     fun resetPassword(email: String, activity: Activity, onSuccess: () -> Unit, onFailure: (Exception) -> Unit) {
         auth.sendPasswordResetEmail(email)
             .addOnCompleteListener(activity) { task ->

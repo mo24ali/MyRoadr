@@ -10,7 +10,7 @@
     <ImageView
         android:id="@+id/onboardingImageUnlock"
         android:layout_width="match_parent"
-        android:layout_height="440dp"
+        android:layout_height="400dp"
         android:src="@drawable/ride"
         android:scaleType="centerCrop"
         app:layout_constraintEnd_toEndOf="parent"
@@ -25,7 +25,7 @@
         android:layout_height="wrap_content"
         android:text="Ride"
         android:textColor="#3D003E"
-        android:textSize="32sp"
+        android:textSize="28sp"
         android:textStyle="bold"
         android:gravity="center"
         android:fontFamily="@font/montserratsemibold"
@@ -33,7 +33,7 @@
         app:layout_constraintTop_toBottomOf="@id/onboardingImageUnlock"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        android:layout_marginTop="10dp"/>
+        android:layout_marginTop="14dp"/>
 
     <!-- Description -->
     <TextView
@@ -42,7 +42,7 @@
         android:layout_height="wrap_content"
         android:text="Culpa qui officia deserunt mollit anim id est laborum."
         android:textColor="#666666"
-        android:textSize="21sp"
+        android:textSize="18sp"
         android:gravity="center"
         android:fontFamily="@font/montserratregular"
         android:lineSpacingExtra="4sp"

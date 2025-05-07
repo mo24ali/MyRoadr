@@ -19,9 +19,11 @@ class SignupActivity : AppCompatActivity() {
         binding.signInText.setOnClickListener {
             val intent = Intent(this,LoginActivity::class.java)
             startActivity(intent)
-            finish()
         }
 
+    }
+    override fun onBackPressed() {
+        onBackPressedDispatcher.onBackPressed()
     }
 
 

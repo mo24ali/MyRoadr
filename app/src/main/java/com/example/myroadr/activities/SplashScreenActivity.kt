@@ -24,13 +24,11 @@ class SplashScreenActivity : AppCompatActivity() {
         binding.loginText.setOnClickListener {
             val intent = Intent(this,LoginActivity::class.java)
             startActivity(intent)
-            finish()
         }
     }
 
     private fun navigateToMainActivity() {
         val intent = Intent(this, Onboarding1Activity::class.java)
         startActivity(intent)
-        finish()
     }
 }

@@ -20,15 +20,16 @@ class Onboarding1Activity : AppCompatActivity() {
         binding.skipButton.setOnClickListener {
             val intent = Intent(this,LoginActivity::class.java)
             startActivity(intent)
-            finish()
 
         }
         binding.nextButton.setOnClickListener {
             val intent = Intent(this,LoginActivity::class.java)
             startActivity(intent)
-            finish()
         }
 
+    }
+    override fun onBackPressed() {
+        onBackPressedDispatcher.onBackPressed()
     }
 
 

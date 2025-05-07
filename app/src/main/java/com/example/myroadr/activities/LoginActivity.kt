@@ -19,12 +19,13 @@ class LoginActivity : AppCompatActivity() {
         binding.signInText.setOnClickListener {
             val intent = Intent(this,SignupActivity::class.java)
             startActivity(intent)
-            finish()
         }
         binding.forgotPasswordText.setOnClickListener {
             val intent = Intent(this,ForgetPasswordActivity::class.java)
             startActivity(intent)
-            finish()
         }
+    }
+    override fun onBackPressed() {
+        onBackPressedDispatcher.onBackPressed()
     }
 }

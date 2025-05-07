@@ -10,7 +10,7 @@
     <!-- Section Bonjour -->
     <TextView
         android:text="Hello John,"
-        android:textSize="32sp"
+        android:textSize="26sp"
         android:textColor="#3D003E"
         android:textStyle="bold"
         android:layout_marginTop="30dp"
@@ -20,7 +20,7 @@
 
     <TextView
         android:text="Wanna take a ride today?"
-        android:textSize="18sp"
+        android:textSize="16sp"
         android:textColor="#3D003E"
         android:fontFamily="@font/montserratregular"
         android:layout_marginBottom="24dp"
@@ -43,8 +43,8 @@
             android:gravity="center_vertical">
 
             <ImageView
-                android:layout_width="96dp"
-                android:layout_height="96dp"
+                android:layout_width="64dp"
+                android:layout_height="64dp"
                 android:src="@drawable/cloudly" /> <!-- ajoute ton image météo ici -->
 
             <LinearLayout
@@ -57,7 +57,7 @@
                 <TextView
                     android:text="18°  Cloudy"
                     android:textColor="#3D003E"
-                    android:textSize="24sp"
+                    android:textSize="20sp"
                     android:textStyle="bold"
                     android:fontFamily="@font/montserratsemibold"
                     android:layout_width="wrap_content"
@@ -66,7 +66,7 @@
                 <TextView
                     android:text="Marbella Dr"
                     android:textColor="#3D003E"
-                    android:textSize="18sp"
+                    android:textSize="16sp"
                     android:fontFamily="@font/montserratregular"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"/>
@@ -76,7 +76,7 @@
         <TextView
             android:text="28 September, Wednesday"
             android:textColor="#1E1E1E"
-            android:textSize="18sp"
+            android:textSize="16sp"
             android:fontFamily="@font/montserratregular"
             android:layout_marginTop="16dp"
             android:layout_gravity="center_horizontal"
@@ -99,7 +99,7 @@
             android:layout_weight="1"
             android:text="Near You"
             android:textColor="#1E1E1E"
-            android:textSize="21sp"
+            android:textSize="14sp"
             android:textStyle="bold"
             android:fontFamily="@font/montserratsemibold"/>
 
@@ -115,12 +115,12 @@
                 android:layout_height="wrap_content"
                 android:text="Browse Map"
                 android:textColor="#3D003E"
-                android:textSize="18sp"
+                android:textSize="14sp"
                 android:fontFamily="@font/montserratregular"/>
 
             <ImageView
-                android:layout_width="20dp"
-                android:layout_height="20dp"
+                android:layout_width="18dp"
+                android:layout_height="18dp"
                 android:layout_marginStart="4dp"
                 android:src="@drawable/chevron_left" />
         </LinearLayout>
@@ -138,7 +138,7 @@
 
         <ImageView
             android:layout_width="match_parent"
-            android:layout_height="120dp"
+            android:layout_height="100dp"
             android:scaleType="fitCenter"
             android:src="@drawable/bike_haibike" />
 
@@ -156,7 +156,6 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Distance"
-                android:textSize="14sp"
                 android:textColor="#3D003E"
                 android:fontFamily="@font/montserratregular"/>
 
@@ -164,7 +163,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text=" 150 m"
-                android:textSize="21sp"
+                android:textSize="18sp"
                 android:textColor="#1E1E1E"
                 android:textStyle="bold"
                 android:fontFamily="@font/montserratsemibold"/>
@@ -176,7 +175,7 @@
             android:layout_height="wrap_content"
             android:text="Haibike Sduro FullSeven"
             android:textColor="#3D003E"
-            android:textSize="16sp"
+            android:textSize="14sp"
             android:layout_marginTop="12dp"
             android:fontFamily="@font/montserratregular"/>
 
@@ -185,7 +184,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="1 Available"
-            android:textSize="18sp"
+            android:textSize="14sp"
             android:textColor="#3D003E"
             android:fontFamily="@font/montserratsemibold"/>
     </LinearLayout>
