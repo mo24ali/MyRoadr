@@ -1,16 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
-    <item
-        android:id="@+id/nav_home"
-        android:icon="@drawable/icone_home"
-        android:title="Home" />
 
     <item
-        android:id="@+id/nav_grid"
-        android:icon="@drawable/map"
-        android:title="Map" />
+        android:id="@+id/home"
+        android:title="Home"
+        android:icon="@drawable/home_circle_outline"/>
 
     <item
-        android:id="@+id/nav_profile"
-        android:icon="@drawable/ic_profile"
-        android:title="Profile" />
+        android:id="@+id/shorts"
+        android:title="Maps"
+        android:icon="@drawable/map_legend"/>
+
+
+    <item
+        android:id="@+id/subscriptions"
+        android:title="Favoris"
+        android:icon="@drawable/heart_outline"/>
+
+    <item
+        android:id="@+id/library"
+        android:title="Profile"
+        android:icon="@drawable/account"/>
+
 </menu>

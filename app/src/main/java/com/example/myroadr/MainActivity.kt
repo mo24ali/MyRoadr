@@ -5,8 +5,7 @@ import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import com.example.myroadr.databinding.ActivityMainBinding
-import com.example.myroadr.Fragments.EventDiscoveryFragment
-import com.example.myroadr.Fragments.HomeFragment
+import com.example.myroadr.fragments.HomeFragment
 
 class MainActivity : AppCompatActivity() {
 

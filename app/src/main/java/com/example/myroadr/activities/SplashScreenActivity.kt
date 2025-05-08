@@ -1,10 +1,12 @@
 package com.example.myroadr.activities
 
 import android.content.Intent
+import android.os.Build
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
 import android.text.Html
+import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
 import com.example.myroadr.MainActivity
 import com.example.myroadr.R
@@ -20,7 +22,6 @@ class SplashScreenActivity : AppCompatActivity() {
         binding.getStartedButton.setOnClickListener {
             navigateToMainActivity()
         }
-        binding.loginText.text= Html.fromHtml("Already have an account? <b>Log in</b>", Html.FROM_HTML_MODE_LEGACY)
         binding.loginText.setOnClickListener {
             val intent = Intent(this,LoginActivity::class.java)
             startActivity(intent)
