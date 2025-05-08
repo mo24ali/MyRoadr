@@ -6,10 +6,11 @@ import android.os.Bundle
 import com.example.myroadr.R
 import com.example.myroadr.databinding.ActivityOnboarding1Binding
 import com.example.myroadr.databinding.ActivitySignupBinding
+import com.example.myroadr.helpers.FirebaseHelper
 
 class SignupActivity : AppCompatActivity() {
     private lateinit var binding: ActivitySignupBinding
-
+    private lateinit var db: FirebaseHelper
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_signup)
