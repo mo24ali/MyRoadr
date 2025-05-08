@@ -17,7 +17,7 @@ class LoginActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         binding.signInText.setOnClickListener {
-            val intent = Intent(this,Main2Activity::class.java)
+            val intent = Intent(this,SignupActivity::class.java)
             startActivity(intent)
         }
         binding.forgotPasswordText.setOnClickListener {
