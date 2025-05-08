@@ -58,6 +58,22 @@ class LoginActivity : AppCompatActivity() {
         // Mot de passe oublié
         binding.forgotPasswordText.setOnClickListener {
             startActivity(Intent(this, ForgetPasswordActivity::class.java))
+//            FirebaseAuth.getInstance().sendPasswordResetEmail(email)
+//                .addOnCompleteListener { task ->
+//                    if (task.isSuccessful) {
+//                        Toast.makeText(
+//                            this,
+//                            "Un lien de réinitialisation a été envoyé à $email",
+//                            Toast.LENGTH_LONG
+//                        ).show()
+//                    } else {
+//                        Toast.makeText(
+//                            this,
+//                            "Erreur : ${task.exception?.message}",
+//                            Toast.LENGTH_LONG
+//                        ).show()
+//                    }
+//                }
         }
 
         // Bouton retour
