@@ -38,12 +38,13 @@
             android:layout_gravity="center">
 
             <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/mailLogin"
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
-                android:hint="Full Name"
+                android:hint="email adress"
                 android:fontFamily="@font/montserratregular"
                 android:background="@android:color/transparent"
-                android:inputType="textPersonName"
+                android:inputType="textEmailAddress"
                 android:textColor="#3D003E"
                 android:textColorHint="#3D003E"/>
         </com.google.android.material.textfield.TextInputLayout>
@@ -64,6 +65,7 @@
             android:layout_gravity="center">
 
             <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/passwordLogin"
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
                 android:hint="Password"

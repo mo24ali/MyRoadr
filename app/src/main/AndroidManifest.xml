@@ -3,7 +3,6 @@
     xmlns:tools="http://schemas.android.com/tools" >
     <!-- Add location permissions -->
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
-    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" /> <!-- Optional: Specify features required by your app -->
     <uses-feature android:name="android.hardware.location.gps" />
     <uses-feature android:name="android.hardware.location.network" />
 

@@ -1,13 +1,14 @@
 {
   "project_info": {
-    "project_number": "402622796570",
-    "project_id": "myroadrr-e4021",
-    "storage_bucket": "myroadrr-e4021.firebasestorage.app"
+    "project_number": "901118133053",
+    "firebase_url": "https://myroadr-9c747-default-rtdb.firebaseio.com",
+    "project_id": "myroadr-9c747",
+    "storage_bucket": "myroadr-9c747.firebasestorage.app"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:402622796570:android:e65a860bd751ba5e4a12a3",
+        "mobilesdk_app_id": "1:901118133053:android:472255d5d2d48ab0fafb54",
         "android_client_info": {
           "package_name": "com.example.myroadr"
         }
@@ -15,7 +16,7 @@
       "oauth_client": [],
       "api_key": [
         {
-          "current_key": "AIzaSyD2LsuK8B6JlOvhYiKRfWcqhHtNRNAiJBE"
+          "current_key": "AIzaSyAXy3oA9RUghRwl6IVOkvTrCzi2hmrOnJo"
         }
       ],
       "services": {
