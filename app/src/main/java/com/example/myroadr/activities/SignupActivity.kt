@@ -20,6 +20,9 @@ class SignupActivity : AppCompatActivity() {
             val intent = Intent(this,LoginActivity::class.java)
             startActivity(intent)
         }
+        binding.registerButton.setOnClickListener{
+
+        }
 
     }
     override fun onBackPressed() {

@@ -115,7 +115,7 @@
             android:id="@+id/signInText"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Already Have An Account? Sign In"
+            android:text="Already Have An Account? Log In"
             android:fontFamily="@font/montserratregular"
             android:textColor="#3D003E"
             android:textSize="16sp"/>
