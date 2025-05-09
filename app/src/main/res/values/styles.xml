@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <style name="generalLinearLayoutStyle">
+        <item name="android:orientation">vertical</item>
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:padding">16dp</item>
+    </style>
+
+
+    <style name="generalTextTitleStyle">
+        <item name="android:textSize">20sp</item>
+        <item name="android:textColor">#222222</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+
+
+    <style name="generalTextSubtitleStyle">
+        <item name="android:textSize">14sp</item>
+        <item name="android:textColor">#777777</item>
+    </style>
+
+
+    <style name="dividerStyle">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">1dp</item>
+        <item name="android:background">#DDDDDD</item>
+    </style>
+
+
+    <style name="floatingActionButtonStyle">
+        <item name="backgroundTint">@color/colorAccent</item>
+        <item name="android:elevation">6dp</item>
+    </style>
+
+
+    <style name="appBarIconsStyle">
+        <item name="android:padding">8dp</item>
+        <item name="android:tint">@color/white</item>
+    </style>
+
+</resources>

@@ -1,14 +1,224 @@
 <?xml version="1.0" encoding="utf-8"?>
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/fprofil"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".fragments.ProfileFragment">
-
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
+    tools:context=".fragments.ProfileFragment"
+    >
+    <androidx.constraintlayout.motion.widget.MotionLayout
+        android:background="@drawable/back"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+        app:applyMotionScene="true"
+        app:layoutDescription="@xml/profil_fragment_scene">
 
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/app_bar_container"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/app_bar_container_height"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <androidx.constraintlayout.utils.widget.ImageFilterView
+            android:id="@+id/profilePic"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/zero_dimens"
+            android:contentDescription="@null"
+            android:scaleType="centerCrop"
+            android:shadowColor="@color/black"
+            android:shadowRadius="99"
+            android:src="@drawable/profile_icon"
+            app:layout_constraintBottom_toBottomOf="@id/app_bar_container"
+            app:layout_constraintEnd_toEndOf="@id/app_bar_container"
+            app:layout_constraintStart_toStartOf="@id/app_bar_container"
+            app:layout_constraintTop_toTopOf="@id/app_bar_container" />
+
+        <ImageView
+            android:id="@+id/ic_back"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            style="@style/appBarIconsStyle"
+            android:contentDescription="@null"
+            android:src="@drawable/ic_back"
+            android:clickable="false"
+            android:visibility="gone"
+            app:layout_constraintStart_toStartOf="@id/app_bar_container"
+            app:layout_constraintTop_toTopOf="@id/app_bar_container" />
+
+
+
+        <com.google.android.material.appbar.MaterialToolbar
+            android:id="@+id/materialToolbar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="#36112429"
+            android:minHeight="?attr/actionBarSize"
+            android:theme="?attr/actionBarTheme"
+            app:layout_constraintBottom_toBottomOf="@+id/app_bar_container"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="@+id/app_bar_container"
+            app:layout_constraintTop_toTopOf="@+id/profileSmya" />
+
+
+        <TextView
+
+            android:id="@+id/profileSmya"
+            android:layout_width="291dp"
+            android:layout_height="56dp"
+            android:layout_marginStart="@dimen/margin_16"
+            android:fontFamily="@font/poppins_medium"
+            android:text="@string/profile_name"
+            android:textColor="@color/md_theme_light_onPrimary"
+            android:textSize="@dimen/font_28"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toTopOf="@id/profile_status"
+            app:layout_constraintStart_toStartOf="@id/app_bar_container" />
+
+        <TextView
+
+            android:id="@+id/profile_status"
+            android:layout_width="291dp"
+            android:layout_height="@dimen/zero_dimens"
+            android:layout_marginBottom="@dimen/margin_16"
+            android:text="@string/profile_status"
+            android:textColor="@color/bottom"
+            android:textSize="@dimen/font_16"
+            app:layout_constraintBottom_toBottomOf="@id/app_bar_container"
+            app:layout_constraintStart_toStartOf="@id/profileSmya" />
+
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/floating_add_pic_action_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="@dimen/margin_16"
+            android:contentDescription="@string/adding_profile_photo"
+            android:src="@drawable/ic_add_a_photo"
+            app:backgroundTint="@color/bottom"
+            android:clickable="true"
+            app:layout_constraintBottom_toBottomOf="@id/app_bar_container"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/app_bar_container"
+            app:shapeAppearanceOverlay="@style/floatingActionButtonStyle" />
+
+        <androidx.core.widget.NestedScrollView
+
+            android:id="@+id/scrollView"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/zero_dimens"
+            android:scrollbars="none"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/app_bar_container">
+
+            <LinearLayout
+                android:id="@+id/body_container"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/app_bar_container">
+
+                <LinearLayout style="@style/generalLinearLayoutStyle">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        style="@style/generalTextTitleStyle"
+                        android:text="@string/account" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/margin_4"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:id="@+id/tvEmail"
+                            style="@style/generalTextSubtitleStyle"
+                            android:text="@string/user_email" />
+
+
+
+                        <com.google.android.material.divider.MaterialDivider
+                            android:layout_width="match_parent"
+                            android:layout_height="1dp"
+                            android:background="?android:attr/listDivider"/>
+
+
+
+
+
+                        <LinearLayout
+
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical">
+
+
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:id="@+id/button_my_offers"
+                                style="@style/generalTextSubtitleStyle"
+                                android:text="@string/manage" />
+
+
+                        </LinearLayout>
+                    </LinearLayout>
+
+                </LinearLayout>
+
+
+
+                <LinearLayout
+                    style="@style/generalLinearLayoutStyle"
+                    android:layout_marginTop="@dimen/margin_8"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+
+
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/LogOut"
+                        style="@style/generalTextSubtitleStyle"
+                        android:drawablePadding="@dimen/margin_16"
+                        android:text="Déconnexion"
+                        app:drawableStartCompat="@drawable/baseline_logout_24"
+                        app:drawableTint="@color/md_theme_light_outline"
+                        android:clickable="true"
+                        />
+
+                    <com.google.android.material.divider.MaterialDivider style="@style/dividerStyle" />
+
+
+
+                </LinearLayout>
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="@dimen/margin_16"
+                    android:fontFamily="@font/poppins_regular"
+                    android:gravity="center"
+                    android:text="@string/footer_sentence"
+                    android:textColor="@color/md_theme_light_outline"
+                    android:textSize="@dimen/font_12" />
+
+            </LinearLayout>
+
+        </androidx.core.widget.NestedScrollView>
+
+    </androidx.constraintlayout.motion.widget.MotionLayout>
 </FrameLayout>
