@@ -21,7 +21,6 @@ import com.example.myroadr.Adpaters.CyclingEventAdapter
 import com.example.myroadr.R
 import com.example.myroadr.databinding.FragmentHomeBinding
 import com.example.myroadr.models.CyclingEvent
-import com.google.android.gms.common.util.CollectionUtils.listOf
 import com.google.android.gms.location.FusedLocationProviderClient
 import com.google.android.gms.location.LocationServices
 import com.google.firebase.auth.FirebaseAuth
@@ -69,27 +68,7 @@ class HomeFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        // recyclerView
-        val recyclerView = view.findViewById<RecyclerView>(R.id.recyclerViewEvents)
 
-        val layoutManager = LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
-        recyclerView.layoutManager = layoutManager
-
-        val userLocation = Location("me").apply {
-            latitude = 33.6
-            longitude = -7.5
-        }
-
-        val fakeEvents = generateRandomEvents()
-
-        val adapter = CyclingEventAdapter(
-            fakeEvents,
-            userLocation,
-            onJoinClick = { event -> Toast.makeText(requireContext(), "Join: ${event.title}", Toast.LENGTH_SHORT).show() },
-            onFavoriteClick = { event -> Toast.makeText(requireContext(), "Favorite: ${event.title}", Toast.LENGTH_SHORT).show() }
-        )
-
-        recyclerView.adapter = adapter
         // 1. Set current date
         val dateFormat = SimpleDateFormat("dd MMMM, EEEE", Locale.getDefault())
         val currentDate = dateFormat.format(Date())
@@ -117,6 +96,27 @@ class HomeFragment : Fragment() {
                 Toast.makeText(requireContext(), "Erreur chargement nom", Toast.LENGTH_SHORT).show()
             }
         })
+        val recyclerView = view.findViewById<RecyclerView>(R.id.recyclerViewEvents)
+
+        val layoutManager = LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
+        recyclerView.layoutManager = layoutManager
+
+        val userLocation = Location("me").apply {
+            latitude = 33.6
+            longitude = -7.5
+        }
+
+        val fakeEvents = generateRandomEvents()
+
+        val adapter = CyclingEventAdapter(
+            fakeEvents,
+            userLocation,
+            onJoinClick = { event -> Toast.makeText(requireContext(), "Join: ${event.title}", Toast.LENGTH_SHORT).show() },
+            onFavoriteClick = { event -> Toast.makeText(requireContext(), "Favorite: ${event.title}", Toast.LENGTH_SHORT).show() }
+        )
+
+        recyclerView.adapter = adapter
+
     }
     private fun checkLocationPermission() {
         when {
@@ -137,31 +137,17 @@ class HomeFragment : Fragment() {
             }
         }
     }
-    private fun generateRandomEvents(): List<CyclingEvent> {
-        val fakeTitles = listOf("Morning Ride", "Sunset Tour", "City Sprint", "Mountain Climb", "Forest Adventure")
-        val fakePlaces = listOf("Rabat", "Casablanca", "Marrakech", "Agadir", "Tanger")
-        val random = java.util.Random()
 
-        return List(10) { i ->
-            CyclingEvent(
-                id = "event_$i",
-                title = fakeTitles.random(),
-                description = "Randomly generated event",
-                date = "2025-05-${(10..30).random()}T0${(1..9).random()}:00",
-                locationName = fakePlaces.random(),
-                latitude = 33.5 + random.nextDouble(),
-                longitude = -7.6 + random.nextDouble(),
-                createdBy = "user${(1..5).random()}",
-                participants = List((1..10).random()) { "user${it}" }
-            )
-        }
-    }
+
+
+
+
     private fun getLocationAndWeather() {
         fusedLocationClient.lastLocation.addOnSuccessListener { location ->
             if (location != null) {
                 fetchWeather(location.latitude, location.longitude)
             } else {
-                Toast.makeText(requireContext(), "Localisation introuvable", Toast.LENGTH_SHORT).show()
+                Toast.makeText(requireContext(), "Localisation introuvablee", Toast.LENGTH_SHORT).show()
             }
         }
     }
@@ -194,6 +180,26 @@ class HomeFragment : Fragment() {
             }
         }
     }
+    private fun generateRandomEvents(): List<CyclingEvent> {
+        val fakeTitles = listOf("Morning Ride", "Sunset Tour", "City Sprint", "Mountain Climb", "Forest Adventure")
+        val fakePlaces = listOf("Rabat", "Casablanca", "Marrakech", "Agadir", "Tanger")
+        val random = java.util.Random()
+
+        return List(10) { i ->
+            CyclingEvent(
+                id = "event_$i",
+                title = fakeTitles.random(),
+                description = "Randomly generated event",
+                date = "2025-05-${(10..30).random()}T0${(1..9).random()}:00",
+                locationName = fakePlaces.random(),
+                latitude = 33.5 + random.nextDouble(),
+                longitude = -7.6 + random.nextDouble(),
+                createdBy = "user${(1..5).random()}",
+                participants = List((1..10).random()) { "user${it}" }
+            )
+        }
+    }
+
 
     override fun onDestroyView() {
         super.onDestroyView()
