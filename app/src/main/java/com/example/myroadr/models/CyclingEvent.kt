@@ -9,6 +9,6 @@ data class CyclingEvent(
     val latitude: Double = 0.0,
     val longitude: Double = 0.0,
     val createdBy: String = "", // UID de l'utilisateur créateur
-    val participants: List<String> = listOf() // UID des cyclistes inscrits
+    val participants: List<String>? = null // UID des cyclistes inscrits
 )
 

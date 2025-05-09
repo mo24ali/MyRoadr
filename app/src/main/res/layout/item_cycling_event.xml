@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="8dp"
+    android:background="@drawable/bg_card_rounded"
+    android:padding="16dp">
+
+    <!-- Bike Image -->
+    <ImageView
+        android:id="@+id/imageViewBike"
+        android:layout_width="0dp"
+        android:layout_height="200dp"
+        android:src="@drawable/bike_haibike"
+        android:scaleType="fitCenter"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <!-- Distance Badge -->
+    <LinearLayout
+        android:id="@+id/layoutDistance"
+        android:layout_width="wrap_content"
+        android:layout_height="40dp"
+        android:background="@drawable/bg_badge_distance"
+        android:orientation="horizontal"
+        android:paddingHorizontal="16dp"
+        android:gravity="center_vertical"
+        android:layout_marginTop="12dp"
+        android:elevation="2dp"
+        app:layout_constraintTop_toBottomOf="@id/imageViewBike"
+        app:layout_constraintStart_toStartOf="parent">
+
+        <TextView
+            android:id="@+id/textViewDistanceLabel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Distance"
+            android:textColor="#3D003E"
+            android:textSize="14sp"
+            android:fontFamily="@font/montserratregular"/>
+
+        <TextView
+            android:id="@+id/textViewDistance"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text=" 150 m"
+            android:textColor="#1E1E1E"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            android:fontFamily="@font/montserratsemibold"/>
+    </LinearLayout>
+
+    <!-- Favorite Heart -->
+    <ImageView
+        android:id="@+id/imageViewFavorite"
+        android:layout_width="28dp"
+        android:layout_height="28dp"
+        android:src="@drawable/heart_outline"
+        android:contentDescription="Favorite Icon"
+        app:layout_constraintTop_toBottomOf="@id/imageViewBike"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginTop="12dp"/>
+
+    <!-- Event Title -->
+    <TextView
+        android:id="@+id/textViewTitle"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="Title of event cycling"
+        android:textSize="16sp"
+        android:textColor="#3D003E"
+        android:fontFamily="@font/montserratregular"
+        android:layout_marginTop="12dp"
+        app:layout_constraintTop_toBottomOf="@id/layoutDistance"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"/>
+
+    <!-- Members -->
+    <TextView
+        android:id="@+id/textViewParticipants"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="10 members"
+        android:textColor="#3D003E"
+        android:textStyle="bold"
+        android:textSize="16sp"
+        android:fontFamily="@font/montserratsemibold"
+        android:layout_marginTop="4dp"
+        app:layout_constraintTop_toBottomOf="@id/textViewTitle"
+        app:layout_constraintStart_toStartOf="parent"/>
+    <!-- Join Button -->
+    <Button
+        android:id="@+id/buttonJoinEvent"
+        android:layout_width="wrap_content"
+        android:layout_height="36dp"
+        android:text="Join Event"
+        android:textColor="#FFFFFF"
+        android:textSize="14sp"
+        android:fontFamily="@font/montserratsemibold"
+        android:background="@drawable/bg_badge_distance"
+        android:paddingStart="20dp"
+        android:paddingEnd="20dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@id/textViewParticipants"
+        app:layout_constraintBottom_toBottomOf="@id/textViewParticipants" />
+</androidx.constraintlayout.widget.ConstraintLayout>
