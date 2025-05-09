@@ -9,7 +9,8 @@
 
     <!-- Section Bonjour -->
     <TextView
-        android:text="Hello John,"
+        android:id="@+id/greetingsId"
+        android:text="Hello ,"
         android:textSize="26sp"
         android:textColor="#3D003E"
         android:textStyle="bold"
@@ -76,6 +77,7 @@
         </LinearLayout>
 
         <TextView
+            android:id="@+id/currentD"
             android:text="28 September, Wednesday"
             android:textColor="#1E1E1E"
             android:textSize="16sp"
@@ -96,6 +98,7 @@
         android:weightSum="2">
 
         <TextView
+            android:id="@+id/nearYou"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
@@ -106,10 +109,12 @@
             android:fontFamily="@font/montserratsemibold"/>
 
         <LinearLayout
+            android:id="@+id/browseMap"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:gravity="end"
+            android:clickable="true"
             android:orientation="horizontal">
 
             <TextView

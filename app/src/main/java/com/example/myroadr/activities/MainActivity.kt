@@ -1,16 +1,17 @@
 package com.example.myroadr.activities
 
+import MapsFragment
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import com.example.myroadr.fragments.FavorisFragment
 import com.example.myroadr.fragments.HomeFragment
-import com.example.myroadr.fragments.MapsFragment
+import com.example.myroadr.fragments.*
 import com.example.myroadr.fragments.ProfileFragment
 import com.example.myroadr.R
 import me.ibrahimsn.lib.SmoothBottomBar
 
-class Main2Activity : AppCompatActivity() {
+class MainActivity : AppCompatActivity() {
     private lateinit var bottomBar: SmoothBottomBar
 
     override fun onCreate(savedInstanceState: Bundle?) {

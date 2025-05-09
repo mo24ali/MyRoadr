@@ -1,13 +1,10 @@
 package com.example.myroadr.activities
 
-import  com.example.myroadr.activities.SignupActivity
-import  com.example.myroadr.activities.ForgetPasswordActivity
 import android.content.Intent
 import android.os.Bundle
 import android.widget.Toast
 import androidx.activity.OnBackPressedCallback
 import androidx.appcompat.app.AppCompatActivity
-import com.example.myroadr.MainActivity
 import com.example.myroadr.databinding.ActivityLoginBinding
 import com.google.firebase.auth.FirebaseAuth
 

@@ -2,23 +2,23 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
 
     <item
-        android:id="@+id/home"
+        android:id="@+id/fragBtnHome"
         android:title="Home"
         android:icon="@drawable/home_circle_outline"/>
 
     <item
-        android:id="@+id/shorts"
+        android:id="@+id/fragBtnMaps"
         android:title="Maps"
         android:icon="@drawable/map_legend"/>
 
 
     <item
-        android:id="@+id/subscriptions"
+        android:id="@+id/fragBtnFavoris"
         android:title="Favoris"
         android:icon="@drawable/heart_outline"/>
 
     <item
-        android:id="@+id/library"
+        android:id="@+id/fragBtnProfile"
         android:title="Profile"
         android:icon="@drawable/account"/>
 

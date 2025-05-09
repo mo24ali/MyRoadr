@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/infoCard"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/bg_card"
+    android:orientation="vertical"
+    android:padding="16dp"
+    android:layout_gravity="bottom"
+    android:layout_margin="16dp"
+    android:elevation="8dp"
+    android:visibility="gone">
+
+    <ImageView
+        android:id="@+id/imageIv"
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        android:scaleType="centerCrop"
+        android:contentDescription="Image de l'offre" />
+
+    <TextView
+        android:id="@+id/titleTv"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Titre de l'offre"
+        android:textStyle="bold"
+        android:textSize="18sp"
+        android:layout_marginTop="8dp" />
+
+    <TextView
+        android:id="@+id/titleTvdesc"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Description de l'offre"
+        android:textSize="16sp"
+        android:layout_marginTop="4dp" />
+
+    <TextView
+        android:id="@+id/addressTv"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Durée"
+        android:textSize="14sp"
+        android:textColor="#666"
+        android:layout_marginTop="2dp" />
+
+    <Button
+        android:id="@+id/hideCard"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Fermer"
+        android:layout_marginTop="10dp"
+        android:layout_gravity="end" />
+
+</LinearLayout>

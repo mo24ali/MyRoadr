@@ -3,9 +3,7 @@ package com.example.myroadr.activities
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import com.example.myroadr.MainActivity
 import com.example.myroadr.R
-import com.example.myroadr.databinding.ActivityOnboarding1Binding
 import com.example.myroadr.databinding.ActivityOnboarding2Binding
 
 class Onboarding2Activity : AppCompatActivity() {
