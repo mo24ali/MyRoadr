@@ -147,7 +147,7 @@ class HomeFragment : Fragment() {
             if (location != null) {
                 fetchWeather(location.latitude, location.longitude)
             } else {
-                Toast.makeText(requireContext(), "Localisation introuvable", Toast.LENGTH_SHORT).show()
+                Toast.makeText(requireContext(), "Localisation introuvablee", Toast.LENGTH_SHORT).show()
             }
         }
     }
