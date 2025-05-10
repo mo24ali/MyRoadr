@@ -14,7 +14,7 @@ import androidx.room.PrimaryKey
 
 @Entity(tableName = "cycling_events")
 data class CyclingEventEntity(
-    @PrimaryKey val id: Int,
+    @PrimaryKey val id: String,
     val title: String,
     val description: String,
     val date: String,
