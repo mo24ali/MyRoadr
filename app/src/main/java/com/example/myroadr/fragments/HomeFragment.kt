@@ -1,6 +1,7 @@
 package com.example.myroadr.fragments
 
 import android.Manifest
+import android.content.Intent
 import android.content.pm.PackageManager
 import android.location.Location
 import android.os.Bundle
@@ -11,16 +12,18 @@ import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
-import androidx.navigation.Navigation
-import androidx.navigation.findNavController
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.myroadr.Adpaters.CyclingEventAdapter
 import com.example.myroadr.R
+import com.example.myroadr.ViewModel.CyclingEventViewModel
+import com.example.myroadr.activities.AddEventActivity
 import com.example.myroadr.databinding.FragmentHomeBinding
 import com.example.myroadr.models.CyclingEvent
+import com.google.android.gms.common.util.CollectionUtils.listOf
 import com.google.android.gms.location.FusedLocationProviderClient
 import com.google.android.gms.location.LocationServices
 import com.google.firebase.auth.FirebaseAuth
@@ -35,6 +38,7 @@ import okhttp3.OkHttpClient
 import okhttp3.Request
 import org.json.JSONObject
 import java.text.SimpleDateFormat
+import java.util.Collections.emptyList
 import java.util.Date
 import java.util.Locale
 
@@ -43,6 +47,7 @@ class HomeFragment : Fragment() {
     private var _binding: FragmentHomeBinding? = null
     private val binding get() = _binding!!
     private lateinit var fusedLocationClient: FusedLocationProviderClient
+    lateinit var adapter: CyclingEventAdapter
 
     private val apiKey = "6a3234657877bc9901fd3c4030bff8b0" // Replace with your real API key
 
@@ -52,7 +57,8 @@ class HomeFragment : Fragment() {
         if (isGranted) {
             getLocationAndWeather()
         } else {
-            Toast.makeText(requireContext(), "Permission localisation refusée", Toast.LENGTH_SHORT).show()
+            Toast.makeText(requireContext(), "Permission localisation refusée", Toast.LENGTH_SHORT)
+                .show()
         }
     }
 
@@ -78,7 +84,10 @@ class HomeFragment : Fragment() {
             findNavController().navigate(R.id.action_homeFragment_to_mapsFragment)
         }
 
-
+        binding.fabAddEvent.setOnClickListener {
+            val intent = Intent(requireContext(), AddEventActivity::class.java)
+            startActivity(intent)
+        }
         binding.nearYou.setOnClickListener {
             findNavController().navigate(R.id.action_homeFragment_to_profileFragment)
         }
@@ -98,7 +107,8 @@ class HomeFragment : Fragment() {
         })
         val recyclerView = view.findViewById<RecyclerView>(R.id.recyclerViewEvents)
 
-        val layoutManager = LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
+        val layoutManager =
+            LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
         recyclerView.layoutManager = layoutManager
 
         val userLocation = Location("me").apply {
@@ -106,10 +116,32 @@ class HomeFragment : Fragment() {
             longitude = -7.5
         }
 
-        val fakeEvents = generateRandomEvents()
+//        val fakeEvents = generateRandomEvents()
+//
+//        val adapter = CyclingEventAdapter(
+//            fakeEvents,
+//            userLocation,
+//            onJoinClick = { event ->
+//                Toast.makeText(
+//                    requireContext(),
+//                    "Join: ${event.title}",
+//                    Toast.LENGTH_SHORT
+//                ).show()
+//            },
+//            onFavoriteClick = { event ->
+//                Toast.makeText(
+//                    requireContext(),
+//                    "Favorite: ${event.title}",
+//                    Toast.LENGTH_SHORT
+//                ).show()
+//            }
+//        )
+//
+//        recyclerView.adapter = adapter
+
+        val viewModel = ViewModelProvider(this)[CyclingEventViewModel::class.java]
 
         val adapter = CyclingEventAdapter(
-            fakeEvents,
             userLocation,
             onJoinClick = { event -> Toast.makeText(requireContext(), "Join: ${event.title}", Toast.LENGTH_SHORT).show() },
             onFavoriteClick = { event -> Toast.makeText(requireContext(), "Favorite: ${event.title}", Toast.LENGTH_SHORT).show() }
@@ -117,7 +149,19 @@ class HomeFragment : Fragment() {
 
         recyclerView.adapter = adapter
 
+        // plus tard, tu peux appeler :
+        adapter.updateData(generateRandomEvents())
+
+
+        viewModel.events.observe(viewLifecycleOwner) {
+            adapter.updateData(it)
+        }
+
+        viewModel.loadEvents(userLocation)
+
+
     }
+
     private fun checkLocationPermission() {
         when {
             ContextCompat.checkSelfPermission(
@@ -128,7 +172,11 @@ class HomeFragment : Fragment() {
             }
 
             shouldShowRequestPermissionRationale(Manifest.permission.ACCESS_FINE_LOCATION) -> {
-                Toast.makeText(requireContext(), "Cette permission est nécessaire pour afficher la météo", Toast.LENGTH_LONG).show()
+                Toast.makeText(
+                    requireContext(),
+                    "Cette permission est nécessaire pour afficher la météo",
+                    Toast.LENGTH_LONG
+                ).show()
                 requestPermissionLauncher.launch(Manifest.permission.ACCESS_FINE_LOCATION)
             }
 
@@ -139,21 +187,20 @@ class HomeFragment : Fragment() {
     }
 
 
-
-
-
     private fun getLocationAndWeather() {
         fusedLocationClient.lastLocation.addOnSuccessListener { location ->
             if (location != null) {
                 fetchWeather(location.latitude, location.longitude)
             } else {
-                Toast.makeText(requireContext(), "Locaalisation introuvablee", Toast.LENGTH_SHORT).show()
+                Toast.makeText(requireContext(), "Locaalisation introuvablee", Toast.LENGTH_SHORT)
+                    .show()
             }
         }
     }
 
     private fun fetchWeather(lat: Double, lon: Double) {
-        val url = "https://api.openweathermap.org/data/2.5/weather?lat=$lat&lon=$lon&appid=$apiKey&units=metric"
+        val url =
+            "https://api.openweathermap.org/data/2.5/weather?lat=$lat&lon=$lon&appid=$apiKey&units=metric"
 
         lifecycleScope.launch(Dispatchers.IO) {
             try {
@@ -175,19 +222,24 @@ class HomeFragment : Fragment() {
             } catch (e: Exception) {
                 e.printStackTrace()
                 withContext(Dispatchers.Main) {
-                    Toast.makeText(requireContext(), "Erreur lors de la récupération météo", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(
+                        requireContext(),
+                        "Erreur lors de la récupération météo",
+                        Toast.LENGTH_SHORT
+                    ).show()
                 }
             }
         }
     }
-    private fun generateRandomEvents(): List<CyclingEvent> {
+
+        private fun generateRandomEvents(): List<CyclingEvent> {
         val fakeTitles = listOf("Morning Ride", "Sunset Tour", "City Sprint", "Mountain Climb", "Forest Adventure")
         val fakePlaces = listOf("Rabat", "Casablanca", "Marrakech", "Agadir", "Tanger")
         val random = java.util.Random()
 
         return List(10) { i ->
             CyclingEvent(
-                id = "event_$i",
+                id = i,
                 title = fakeTitles.random(),
                 description = "Randomly generated event",
                 date = "2025-05-${(10..30).random()}T0${(1..9).random()}:00",
@@ -200,7 +252,7 @@ class HomeFragment : Fragment() {
         }
     }
 
-
+//////////////////////////
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
