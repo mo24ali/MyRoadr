@@ -1,0 +1,158 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@drawable/backgroundsplash">
+
+    <!-- Header Gradient -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        android:orientation="horizontal"
+        android:padding="24dp"
+        android:gravity="bottom">
+
+        <ImageView
+            android:id="@+id/backArrow"
+            android:layout_width="32dp"
+            android:layout_height="32dp"
+            android:src="@drawable/chevron_left"
+            app:tint="@android:color/white"
+            android:layout_gravity="top" />
+
+        <TextView
+            android:id="@+id/supportTitle"
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            android:text="Create Cycling Event"
+            android:textColor="@android:color/white"
+            android:textSize="32sp"
+            android:layout_marginStart="16dp"
+            android:textStyle="bold"
+            android:fontFamily="@font/montserratsemibold"
+            android:layout_gravity="bottom"/>
+    </LinearLayout>
+
+    <!-- Form -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:background="@color/white"
+        android:padding="24dp">
+
+        <!-- Title -->
+        <EditText
+            android:id="@+id/titleInput"
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:hint="Title of Event"
+            android:background="@android:color/transparent"
+            android:paddingBottom="12dp"
+            android:textColorHint="#620042"
+            android:textColor="#000000"
+            android:fontFamily="@font/montserratregular"
+            android:layout_marginBottom="8dp" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="#E0E0E0" />
+
+        <!-- Description -->
+        <EditText
+            android:id="@+id/descriptionInput"
+            android:layout_width="match_parent"
+            android:layout_height="100dp"
+            android:gravity="top"
+            android:hint="Description of Event"
+            android:background="@android:color/transparent"
+            android:paddingBottom="12dp"
+            android:textColorHint="#620042"
+            android:textColor="#000000"
+            android:fontFamily="@font/montserratregular"
+            android:layout_marginTop="16dp"
+            android:layout_marginBottom="8dp" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="#E0E0E0" />
+
+        <!-- Date of Event -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_marginTop="16dp">
+
+            <EditText
+                android:id="@+id/dateInput"
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                android:hint="Date of Event"
+                android:background="@android:color/transparent"
+                android:textColor="#000000"
+                android:textColorHint="#620042"
+                android:focusable="false"
+                android:clickable="true"
+                android:inputType="none"
+                android:drawableStart="@drawable/calendar_range"
+                android:drawableTint=""
+                android:drawablePadding="12dp"
+                android:fontFamily="@font/montserratregular"
+                android:paddingStart="8dp" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="#E0E0E0"/>
+        </LinearLayout>
+
+        <!-- Location -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_marginTop="16dp">
+
+            <EditText
+                android:id="@+id/locationInput"
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                android:hint="Choose your location"
+                android:background="@android:color/transparent"
+                android:textColor="#000000"
+                android:textColorHint="#620042"
+                android:focusable="false"
+                android:clickable="true"
+                android:inputType="none"
+                android:drawableStart="@drawable/map_marker"
+                android:drawablePadding="12dp"
+                android:fontFamily="@font/montserratregular"
+                android:paddingStart="8dp" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="#E0E0E0"/>
+        </LinearLayout>
+
+
+        <!-- Submit Button -->
+        <Button
+            android:id="@+id/submitButton"
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:layout_marginTop="24dp"
+            android:text="Submit"
+            android:textColor="#3D003E"
+            android:textStyle="bold"
+            android:fontFamily="@font/montserratsemibold"
+            android:background="@drawable/bg_badge_distance"/>
+    </LinearLayout>
+
+</LinearLayout>
