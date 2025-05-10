@@ -58,22 +58,17 @@ package com.example.myroadr.DB
 import android.content.Context
 import androidx.room.*
 import androidx.room.Room.databaseBuilder
-import com.example.myroadr.DAO.CyclingEventDao
 import com.example.myroadr.DAO.UserProfileDao
 import com.example.myroadr.Entity.UserProfile
-import com.example.myroadr.Entity.CyclingEventEntity
 import kotlinx.coroutines.InternalCoroutinesApi
 import kotlinx.coroutines.internal.synchronized
 
-@Database(
-    entities = [UserProfile::class, CyclingEventEntity::class],
-    version = 3, // AUGMENTÉ si tu modifies la structure
-    exportSchema = false
-)
+@Database(entities = [UserProfile::class], version = 1) // ← Change this number
+
 abstract class AppDatabase : RoomDatabase() {
 
     abstract fun userProfileDao(): UserProfileDao
-    abstract fun eventDao(): CyclingEventDao
+    //abstract fun eventDao(): CyclingEventDao
 
     companion object {
 
