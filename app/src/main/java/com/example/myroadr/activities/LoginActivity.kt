@@ -30,23 +30,41 @@ class LoginActivity : AppCompatActivity() {
                 return@setOnClickListener
             }
 
-            auth.signInWithEmailAndPassword(email, password)
-                .addOnCompleteListener { task ->
-                    if (task.isSuccessful) {
-                        Toast.makeText(this, "Connexion réussie", Toast.LENGTH_SHORT).show()
-
-                         startActivity(Intent(this, MainActivity::class.java))
-                         finish()
-                    } else {
-                        Toast.makeText(
-                            this,
-                            "Échec de la connexion : ${task.exception?.message}",
-                            Toast.LENGTH_LONG
-                        ).show()
+            // Check for admin credentials
+            if (email == "admin@admin.com" && password == "admin") {
+                // Sign in with Firebase using admin credentials
+                auth.signInWithEmailAndPassword(email, password)
+                    .addOnCompleteListener { task ->
+                        if (task.isSuccessful) {
+                            Toast.makeText(this, "Connexion admin réussie", Toast.LENGTH_SHORT).show()
+                            val intent = Intent(this, AdminDashboardActivity::class.java)
+                            startActivity(intent)
+                        } else {
+                            Toast.makeText(
+                                this,
+                                "Échec de la connexion admin : ${task.exception?.message}",
+                                Toast.LENGTH_LONG
+                            ).show()
+                        }
                     }
-                }
+            } else {
+                // Regular user login
+                auth.signInWithEmailAndPassword(email, password)
+                    .addOnCompleteListener { task ->
+                        if (task.isSuccessful) {
+                            Toast.makeText(this, "Connexion réussie", Toast.LENGTH_SHORT).show()
+                            startActivity(Intent(this, MainActivity::class.java))
+                            finish()
+                        } else {
+                            Toast.makeText(
+                                this,
+                                "Échec de la connexion : ${task.exception?.message}",
+                                Toast.LENGTH_LONG
+                            ).show()
+                        }
+                    }
+            }
         }
-
         // Aller à l'inscription
         binding.signInText.setOnClickListener {
             startActivity(Intent(this, SignupActivity::class.java))

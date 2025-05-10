@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@drawable/backgroundsplash">
+
+    <!-- Header Gradient -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        android:orientation="horizontal"
+        android:padding="24dp"
+        android:gravity="bottom">
+
+        <ImageView
+            android:id="@+id/backArrow"
+            android:layout_width="32dp"
+            android:layout_height="32dp"
+            android:src="@drawable/chevron_left"
+            app:tint="@android:color/white"
+            android:layout_gravity="top" />
+
+        <TextView
+            android:id="@+id/supportTitle"
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            android:text="Contact Support"
+            android:textColor="@android:color/white"
+            android:textSize="32sp"
+            android:layout_marginStart="16dp"
+            android:textStyle="bold"
+            android:fontFamily="@font/montserratsemibold"
+            android:layout_gravity="bottom"/>
+    </LinearLayout>
+
+    <!-- Form -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:background="@color/white"
+        android:padding="24dp">
+
+        <!-- Title -->
+        <EditText
+            android:id="@+id/titleInputMessage"
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:hint="Title of Message"
+            android:background="@android:color/transparent"
+            android:paddingBottom="12dp"
+            android:textColorHint="#620042"
+            android:textColor="#000000"
+            android:fontFamily="@font/montserratregular"
+            android:layout_marginBottom="8dp" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="#E0E0E0" />
+
+        <!-- Description -->
+        <EditText
+            android:id="@+id/descriptionInputMessage"
+            android:layout_width="match_parent"
+            android:layout_height="100dp"
+            android:gravity="top"
+            android:hint="Body of Message"
+            android:background="@android:color/transparent"
+            android:paddingBottom="12dp"
+            android:textColorHint="#620042"
+            android:textColor="#000000"
+            android:fontFamily="@font/montserratregular"
+            android:layout_marginTop="16dp"
+            android:layout_marginBottom="8dp" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="#E0E0E0" />
+
+
+
+
+        <!-- Submit Button -->
+        <Button
+            android:id="@+id/submitButtonMessage"
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:layout_marginTop="24dp"
+            android:text="Submit"
+            android:textColor="#3D003E"
+            android:textStyle="bold"
+            android:fontFamily="@font/montserratsemibold"
+            android:background="@drawable/bg_badge_distance"/>
+    </LinearLayout>
+
+</LinearLayout>

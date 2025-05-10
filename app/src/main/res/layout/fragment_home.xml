@@ -149,10 +149,10 @@
         android:layout_width="60dp"
         android:layout_height="60dp"
         android:layout_gravity="bottom|end"
-        android:layout_margin="24dp"
         android:contentDescription="Add Cycling Event"
         app:srcCompat="@drawable/ic_addd"
-        app:backgroundTint="@color/white" />
+        app:backgroundTint="@color/white"
+        />
 
 
 </LinearLayout>

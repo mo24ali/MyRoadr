@@ -13,6 +13,7 @@ import androidx.lifecycle.lifecycleScope
 import com.example.myroadr.DB.AppDatabase
 import com.example.myroadr.Entity.UserProfile
 import com.example.myroadr.R
+import com.example.myroadr.activities.ContactSupportActivity
 import com.example.myroadr.activities.SplashScreenActivity
 import com.example.myroadr.databinding.FragmentProfileBinding
 import com.example.myroadr.util.SharedPreferencesUtil
@@ -47,6 +48,11 @@ class ProfileFragment : Fragment() {
         binding.floatingAddPicActionButton.setOnClickListener {
             val intent = Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI)
             startActivityForResult(intent, PICK_IMAGE_REQUEST)
+        }
+        binding.support.setOnClickListener{
+            val intent = Intent(activity, ContactSupportActivity::class.java)
+            startActivity(intent)
+
         }
 
         return binding.root
