@@ -101,7 +101,7 @@
                 android:clickable="true"
                 android:inputType="none"
                 android:drawableStart="@drawable/calendar_range"
-                android:drawableTint=""
+                android:drawableTint="@color/back"
                 android:drawablePadding="12dp"
                 android:fontFamily="@font/montserratregular"
                 android:paddingStart="8dp" />

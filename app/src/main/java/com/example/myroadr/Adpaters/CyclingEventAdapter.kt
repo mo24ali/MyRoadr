@@ -11,18 +11,21 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.myroadr.R
 import com.example.myroadr.models.CyclingEvent
 
+import kotlin.collections.*
+
 class CyclingEventAdapter(
-    private val events: List<CyclingEvent>,
     private val userLocation: Location,
     private val onJoinClick: (CyclingEvent) -> Unit,
     private val onFavoriteClick: (CyclingEvent) -> Unit
 ) : RecyclerView.Adapter<CyclingEventAdapter.EventViewHolder>() {
 
+    private val events = mutableListOf<CyclingEvent>()
+
     inner class EventViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         val imageBike = view.findViewById<ImageView>(R.id.imageViewBike)
         val title = view.findViewById<TextView>(R.id.textViewTitle)
         val distance = view.findViewById<TextView>(R.id.textViewDistance)
-        val participants = view.findViewById<TextView>(R.id.textViewParticipants)
+        //val participants = view.findViewById<TextView>(R.id.textViewParticipants)
         val heart = view.findViewById<ImageView>(R.id.imageViewFavorite)
         val joinBtn = view.findViewById<Button>(R.id.buttonJoinEvent)
     }
@@ -36,9 +39,8 @@ class CyclingEventAdapter(
     override fun onBindViewHolder(holder: EventViewHolder, position: Int) {
         val event = events[position]
         holder.title.text = event.title
-        holder.participants.text = "${event.participants?.size ?: 0} members"
+        //holder.participants.text = "${event.participants?.size ?: 0} members"
 
-        // Calculer la distance
         val eventLocation = Location("eventProvider")
         eventLocation.latitude = event.latitude
         eventLocation.longitude = event.longitude
@@ -46,16 +48,15 @@ class CyclingEventAdapter(
         val distanceMeters = userLocation.distanceTo(eventLocation).toInt()
         holder.distance.text = "$distanceMeters m"
 
-        // Bouton rejoindre
-        holder.joinBtn.setOnClickListener {
-            onJoinClick(event)
-        }
-
-        // Bouton favoris
-        holder.heart.setOnClickListener {
-            onFavoriteClick(event)
-        }
+        holder.joinBtn.setOnClickListener { onJoinClick(event) }
+        holder.heart.setOnClickListener { onFavoriteClick(event) }
     }
 
     override fun getItemCount() = events.size
+
+    fun updateData(newEvents: List<CyclingEvent>) {
+        events.clear()
+        events.addAll(newEvents)
+        notifyDataSetChanged()
+    }
 }
