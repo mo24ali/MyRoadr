@@ -5,6 +5,7 @@ import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import com.example.myroadr.databinding.ActivityContactSupportBinding
+import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
 import java.text.SimpleDateFormat
@@ -69,16 +70,25 @@ class ContactSupportActivity : AppCompatActivity() {
         val messageId = database.child("support_messages").push().key
 
         // Get current date and time
-        val sdf = SimpleDateFormat("dd/MM/yyyy HH:mm", Locale.getDefault())
+        val sdf = SimpleDateFormat("dd/MM/yyyy", Locale.getDefault())
+        val sdfTime = SimpleDateFormat("HH:mm", Locale.getDefault())
         val currentDate = sdf.format(Date())
+        val currentTime = sdfTime.format(Date())
+
+        // Get current user
+        val currentUser = FirebaseAuth.getInstance().currentUser
+        val userEmail = currentUser?.email ?: "unknown"
+        val userId = currentUser?.uid ?: "unknown_user"
 
         // Create message data
         val messageData = hashMapOf(
             "title" to title,
             "description" to description,
-            "timestamp" to currentDate,
-            "status" to "pending", // You can track message status
-            "userId" to "current_user_id" // Replace with actual user ID
+            "date" to currentDate,
+            "time" to currentTime,
+            "timestamp" to "$currentDate $currentTime",
+            "userId" to userId,
+            "userEmail" to userEmail
         )
 
         if (messageId != null) {
@@ -106,6 +116,7 @@ class ContactSupportActivity : AppCompatActivity() {
             ).show()
         }
     }
+
 
     private fun showSuccessDialog() {
         AlertDialog.Builder(this)

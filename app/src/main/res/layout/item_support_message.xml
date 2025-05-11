@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/bg_card"
+    android:layout_marginBottom="16dp"
+    android:padding="16dp">
+
+    <!-- Message Icon -->
+    <ImageView
+        android:id="@+id/iconMessage"
+        android:layout_width="24dp"
+        android:layout_height="24dp"
+        android:src="@drawable/message"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        app:tint="@color/teal_200" />
+
+    <!-- Date -->
+    <TextView
+        android:id="@+id/dateText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="20 Aug 2019"
+        android:textSize="14sp"
+        android:textColor="@color/black"
+        android:layout_alignParentEnd="true"
+        android:layout_alignTop="@id/iconMessage"
+        android:fontFamily="@font/montserratregular" />
+
+    <!-- Message Text -->
+    <TextView
+        android:id="@+id/messageText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/iconMessage"
+        android:layout_marginTop="12dp"
+        android:text="Message..."
+        android:textColor="@color/black"
+        android:textSize="16sp"
+        android:fontFamily="@font/montserratregular" />
+
+    <!-- Sender Email -->
+    <TextView
+        android:id="@+id/emailText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/messageText"
+        android:layout_alignParentStart="true"
+        android:layout_marginTop="12dp"
+        android:text="user@example.com"
+        android:textColor="@color/black"
+        android:textSize="14sp"
+        android:fontFamily="@font/montserratregular" />
+
+    <!-- Reply Button -->
+    <Button
+        android:id="@+id/replyButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@id/emailText"
+        android:layout_alignParentEnd="true"
+        android:text="Reply"
+        android:background="@drawable/bg_badge_distance"
+        android:textColor="@android:color/white"
+        android:textSize="14sp"
+        android:fontFamily="@font/montserratregular" />
+</RelativeLayout>

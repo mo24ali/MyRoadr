@@ -32,6 +32,9 @@
         android:theme="@style/Theme.MyRoadr"
         tools:targetApi="31">
         <activity
+            android:name=".activities.ShowMessagesActivity"
+            android:exported="false" />
+        <activity
             android:name=".activities.ContactSupportActivity"
             android:exported="false" />
         <activity
