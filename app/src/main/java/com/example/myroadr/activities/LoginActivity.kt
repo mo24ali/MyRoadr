@@ -31,7 +31,7 @@ class LoginActivity : AppCompatActivity() {
             }
 
             // Check for admin credentials
-            if (email == "admin@admin.com" && password == "admin") {
+            if (email == "admin@admin.com" && password == "adminadmin") {
                 // Sign in with Firebase using admin credentials
                 auth.signInWithEmailAndPassword(email, password)
                     .addOnCompleteListener { task ->

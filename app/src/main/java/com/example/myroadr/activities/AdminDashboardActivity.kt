@@ -71,9 +71,8 @@ class AdminDashboardActivity : AppCompatActivity() {
     private fun setupClickListeners() {
         // Manage Messages click
         binding.messageshow.setOnClickListener {
-            Toast.makeText(this, "Manage Messages clicked", Toast.LENGTH_SHORT).show()
-            // Uncomment when you have the MessagesActivity
-            // startActivity(Intent(this, MessagesActivity::class.java))
+
+            startActivity(Intent(this, ShowMessagesActivity::class.java))
         }
 
         // Logout click with confirmation dialog
