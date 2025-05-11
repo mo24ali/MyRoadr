@@ -18,17 +18,16 @@ import androidx.core.app.ActivityCompat
 import androidx.fragment.app.Fragment
 import com.example.myroadr.R
 import com.example.myroadr.databinding.InfoCardBinding
+import com.example.myroadr.models.CyclingEvent
 import com.google.android.gms.location.*
 import com.google.android.gms.maps.CameraUpdateFactory
 import com.google.android.gms.maps.GoogleMap
 import com.google.android.gms.maps.OnMapReadyCallback
 import com.google.android.gms.maps.SupportMapFragment
+import com.google.android.gms.maps.model.BitmapDescriptorFactory
 import com.google.android.gms.maps.model.LatLng
 import com.google.android.gms.maps.model.MarkerOptions
-import com.google.firebase.database.DatabaseReference
-import com.google.firebase.database.FirebaseDatabase
-
-// ... (imports identiques)
+import com.google.firebase.database.*
 
 class MapsFragment : Fragment(), OnMapReadyCallback {
 
@@ -81,20 +80,19 @@ class MapsFragment : Fragment(), OnMapReadyCallback {
             return
         }
 
-        // Récupération immédiate de la localisation
         fusedLocationClient.getCurrentLocation(Priority.PRIORITY_HIGH_ACCURACY, null)
             .addOnSuccessListener { location ->
                 location?.let {
                     val latLng = LatLng(it.latitude, it.longitude)
                     if (::googleMap.isInitialized) {
                         googleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(latLng, 15f))
-                        googleMap.addMarker(MarkerOptions().position(latLng).title("Moi (immédiat)"))
+                        googleMap.addMarker(MarkerOptions().position(latLng).title("Moi").icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_BLUE)))
                         googleMap.isMyLocationEnabled = true
                     }
+                    showEventMarkers()
                 }
             }
 
-        // Rafraîchissement fréquent
         val locationRequest = LocationRequest.Builder(Priority.PRIORITY_HIGH_ACCURACY, 3000L)
             .setMinUpdateIntervalMillis(1000L)
             .setMaxUpdateDelayMillis(3000L)
@@ -107,8 +105,8 @@ class MapsFragment : Fragment(), OnMapReadyCallback {
                 if (::googleMap.isInitialized) {
                     val current = LatLng(location.latitude, location.longitude)
                     googleMap.clear()
-                    googleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(current, 15f))
-                    googleMap.addMarker(MarkerOptions().position(current).title("Moi"))
+                    googleMap.addMarker(MarkerOptions().position(current).title("Moi").icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_BLUE)))
+                    showEventMarkers()
                 }
             }
         }
@@ -119,6 +117,30 @@ class MapsFragment : Fragment(), OnMapReadyCallback {
     override fun onMapReady(map: GoogleMap) {
         googleMap = map
         googleMap.uiSettings.isZoomControlsEnabled = true
+    }
+
+    private fun showEventMarkers() {
+        database.child("Events").addListenerForSingleValueEvent(object : ValueEventListener {
+            override fun onDataChange(snapshot: DataSnapshot) {
+                for (eventSnap in snapshot.children) {
+                    val event = eventSnap.getValue(CyclingEvent::class.java)
+                    event?.let {
+                        val latLng = LatLng(it.latitude, it.longitude)
+                        googleMap.addMarker(
+                            MarkerOptions()
+                                .position(latLng)
+                                .title(it.title)
+                                .snippet(it.description)
+                                .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_RED))
+                        )
+                    }
+                }
+            }
+
+            override fun onCancelled(error: DatabaseError) {
+                Toast.makeText(requireContext(), "Erreur chargement événements", Toast.LENGTH_SHORT).show()
+            }
+        })
     }
 
     private val gpsReceiver = object : BroadcastReceiver() {
@@ -143,4 +165,3 @@ class MapsFragment : Fragment(), OnMapReadyCallback {
         requireContext().unregisterReceiver(gpsReceiver)
     }
 }
-
