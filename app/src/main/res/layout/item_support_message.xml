@@ -23,7 +23,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="20 Aug 2019"
-        android:textSize="14sp"
+        android:textSize="12sp"
         android:textColor="@color/black"
         android:layout_alignParentEnd="true"
         android:layout_alignTop="@id/iconMessage"
@@ -51,7 +51,7 @@
         android:layout_marginTop="12dp"
         android:text="user@example.com"
         android:textColor="@color/black"
-        android:textSize="14sp"
+        android:textSize="12sp"
         android:fontFamily="@font/montserratregular" />
 
     <!-- Reply Button -->

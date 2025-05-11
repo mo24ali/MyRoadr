@@ -66,6 +66,17 @@ class AdminDashboardActivity : AppCompatActivity() {
                 Toast.makeText(this@AdminDashboardActivity, "Failed to load events: ${error.message}", Toast.LENGTH_SHORT).show()
             }
         })
+        // Fetch number of events
+        database.child("support_messages").addListenerForSingleValueEvent(object : ValueEventListener {
+            override fun onDataChange(snapshot: DataSnapshot) {
+                val eventCount = snapshot.childrenCount
+                binding.valueNbAvertissements.text = eventCount.toString()
+            }
+
+            override fun onCancelled(error: DatabaseError) {
+                Toast.makeText(this@AdminDashboardActivity, "Failed to load events: ${error.message}", Toast.LENGTH_SHORT).show()
+            }
+        })
     }
 
     private fun setupClickListeners() {
