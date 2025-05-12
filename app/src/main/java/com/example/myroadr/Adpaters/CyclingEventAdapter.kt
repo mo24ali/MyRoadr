@@ -7,11 +7,13 @@ import android.view.ViewGroup
 import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
+import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
 import com.example.myroadr.R
 import com.example.myroadr.models.CyclingEvent
+import com.example.myroadr.util.FavoritesManager
 
-import kotlin.collections.*
+
 
 class CyclingEventAdapter(
     private val userLocation: Location,
@@ -25,7 +27,6 @@ class CyclingEventAdapter(
         val imageBike = view.findViewById<ImageView>(R.id.imageViewBike)
         val title = view.findViewById<TextView>(R.id.textViewTitle)
         val distance = view.findViewById<TextView>(R.id.textViewDistance)
-        //val participants = view.findViewById<TextView>(R.id.textViewParticipants)
         val heart = view.findViewById<ImageView>(R.id.imageViewFavorite)
         val joinBtn = view.findViewById<Button>(R.id.buttonJoinEvent)
     }
@@ -38,19 +39,35 @@ class CyclingEventAdapter(
 
     override fun onBindViewHolder(holder: EventViewHolder, position: Int) {
         val event = events[position]
-        holder.title.text = event.title
-        //holder.participants.text = "${event.participants?.size ?: 0} members"
 
-        val eventLocation = Location("eventProvider")
-        eventLocation.latitude = event.latitude
-        eventLocation.longitude = event.longitude
+        holder.title.text = event.title
+
+        val eventLocation = Location("eventProvider").apply {
+            latitude = event.latitude
+            longitude = event.longitude
+        }
 
         val distanceMeters = userLocation.distanceTo(eventLocation).toInt()
         holder.distance.text = "$distanceMeters m"
 
+        val isFav = FavoritesManager.isFavorite(event)
+        holder.heart.setImageResource(
+            if (isFav) R.drawable.ic_heart_filled else R.drawable.ic_heart_outline
+        )
+
+        holder.heart.setOnClickListener {
+            if (isFav) {
+                FavoritesManager.remove(event)
+            } else {
+                FavoritesManager.add(event)
+            }
+            notifyItemChanged(position)
+            onFavoriteClick(event)
+        }
+
         holder.joinBtn.setOnClickListener { onJoinClick(event) }
-        holder.heart.setOnClickListener { onFavoriteClick(event) }
     }
+
 
     override fun getItemCount() = events.size
 

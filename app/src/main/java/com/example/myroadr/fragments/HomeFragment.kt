@@ -135,6 +135,9 @@ class HomeFragment : Fragment() {
                 Toast.makeText(requireContext(), "Erreur chargement événements", Toast.LENGTH_SHORT).show()
             }
         })
+
+        ////////////////////////////////////////
+
     }
 
     private fun checkLocationPermission() {
