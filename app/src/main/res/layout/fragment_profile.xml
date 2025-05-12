@@ -165,9 +165,10 @@
 
 
                             <TextView
+                                android:clickable="true"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
-                                android:id="@+id/button_my_offers"
+                                android:id="@+id/buttonMyEvents"
                                 style="@style/generalTextSubtitleStyle"
                                 android:text="@string/manage" />
 

@@ -20,6 +20,6 @@
     <string name="account">Account</string>
     <string name="user_email">example@example.com</string>
     <string name="phone_number_desc">Tap to change email</string>
-    <string name="manage">Manage Mes Offres</string>
+    <string name="manage">Manage Mes événements</string>
     <string name="footer_sentence">MyRoadr copyright 2025</string>
 </resources>

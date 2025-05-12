@@ -14,6 +14,7 @@ import com.example.myroadr.DB.AppDatabase
 import com.example.myroadr.Entity.UserProfile
 import com.example.myroadr.R
 import com.example.myroadr.activities.ContactSupportActivity
+import com.example.myroadr.activities.MyEventsActivity
 import com.example.myroadr.activities.SplashScreenActivity
 import com.example.myroadr.databinding.FragmentProfileBinding
 import com.example.myroadr.util.SharedPreferencesUtil
@@ -53,6 +54,10 @@ class ProfileFragment : Fragment() {
             val intent = Intent(activity, ContactSupportActivity::class.java)
             startActivity(intent)
 
+        }
+        binding.buttonMyEvents.setOnClickListener{
+            val intent = Intent(requireContext(), MyEventsActivity::class.java)
+            startActivity(intent)
         }
 
         return binding.root

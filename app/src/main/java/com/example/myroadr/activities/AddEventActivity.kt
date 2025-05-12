@@ -97,7 +97,7 @@ class AddEventActivity : AppCompatActivity() {
                             "locationName" to loc,
                             "latitude" to lat,
                             "longitude" to long,
-                            "createdBy" to username,
+                            "createdBy" to userId,
                             "participants" to listOf<String>()
                         )
 
