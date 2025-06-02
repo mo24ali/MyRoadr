@@ -3,12 +3,32 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
+    <!-- Google Map -->
     <fragment
         android:id="@+id/fmap"
         android:name="com.google.android.gms.maps.SupportMapFragment"
         android:layout_width="match_parent"
         android:layout_height="match_parent" />
 
+    <!-- Search Bar -->
+    <EditText
+        android:id="@+id/searchCityEditText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="16dp"
+        android:hint="Rechercher une ville..."
+        android:background="@android:drawable/edit_text"
+        android:padding="12dp"
+        android:textColorHint="#888"
+        android:elevation="4dp"
+        android:inputType="textCapWords"
+        android:textColor="#000"
+        android:layout_gravity="top"
+        android:drawableEnd="@android:drawable/ic_menu_search"
+        android:drawablePadding="8dp"
+        android:gravity="center_vertical" />
+
+    <!-- Info Card (hidden by default, shown when clicking a marker) -->
     <include
         layout="@layout/info_card"
         android:id="@+id/infoCard"

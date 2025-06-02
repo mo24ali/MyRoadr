@@ -1,0 +1,193 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    tools:context=".activities.ShowDetailsEvent">
+
+    <!-- Toolbar -->
+    <RelativeLayout
+        android:id="@+id/toolbarRL"
+        android:layout_width="match_parent"
+        android:layout_height="55dp"
+        android:background="@drawable/backgroundsplash">
+
+        <TextView
+            android:id="@+id/textviewdetailspost"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/montserratsemibold"
+            android:text="Details of Cycling Event"
+            android:layout_centerInParent="true"
+            android:textColor="@color/white"
+            android:textSize="20sp" />
+    </RelativeLayout>
+
+    <!-- Scrollable content -->
+    <ScrollView
+        android:id="@+id/hh"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/toolbarRL">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="20dp">
+
+            <!-- Image -->
+            <ImageView
+                android:id="@+id/imageSliderVp"
+                android:src="@drawable/bike_haibike"
+                android:layout_width="match_parent"
+                android:layout_height="200dp"
+                android:scaleType="centerCrop" />
+
+            <!-- Badge Distance -->
+            <TextView
+                android:id="@+id/distanceBadge"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/imageSliderVp"
+                android:layout_marginTop="16dp"
+                android:paddingVertical="6dp"
+                android:paddingHorizontal="12dp"
+                android:text="Distance 150 m"
+                android:textColor="#ffffff"
+                android:textSize="14sp"
+                android:textStyle="bold"
+                android:fontFamily="@font/montserratsemibold"
+                android:background="@drawable/bg_badge_distance" />
+
+
+            <TextView
+                android:id="@+id/datepub"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="10 membres"
+                android:fontFamily="@font/montserratregular"
+                android:layout_alignParentEnd="true"
+                android:layout_below="@+id/imageSliderVp"
+                android:layout_marginTop="16dp"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                android:textColor="#000" />
+
+
+
+            <!-- Titre -->
+            <TextView
+                android:id="@+id/titleLabelTv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/datepub"
+                android:layout_marginTop="20dp"
+                android:fontFamily="@font/montserratsemibold"
+                android:text="Title Of Event"
+                android:textColor="#333"
+                android:textSize="16sp" />
+
+            <TextView
+                android:id="@+id/titleTv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Sortie vélo en montagne"
+                android:layout_below="@+id/titleLabelTv"
+                android:layout_marginTop="4dp"
+                android:fontFamily="@font/montserratregular"
+                android:textSize="14sp"
+                android:textColor="#555" />
+
+            <!-- Description -->
+            <TextView
+                android:id="@+id/descriptionLabelTv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Description Of Event"
+                android:layout_below="@+id/titleTv"
+                android:layout_marginTop="12dp"
+                android:fontFamily="@font/montserratsemibold"
+                android:textSize="16sp"
+                android:textColor="#333" />
+
+            <TextView
+                android:id="@+id/descriptionTv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Balade conviviale dans les montagnes de l’Atlas. Ouvert à tous les niveaux !"
+                android:layout_below="@+id/descriptionLabelTv"
+                android:layout_marginTop="4dp"
+                android:fontFamily="@font/montserratregular"
+                android:textSize="14sp"
+                android:textColor="#555" />
+
+            <!-- Donneur -->
+            <TextView
+                android:id="@+id/descriptiondonneurLabelTv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Organised by"
+                android:layout_below="@+id/descriptionTv"
+                android:layout_marginTop="16dp"
+                android:fontFamily="@font/montserratsemibold"
+                android:textSize="16sp"
+                android:textColor="#333" />
+
+            <!-- Profil de l'organisateur -->
+            <com.google.android.material.card.MaterialCardView
+                android:id="@+id/donneurProfileCv"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/descriptiondonneurLabelTv"
+                android:layout_marginTop="8dp"
+                app:cardCornerRadius="10dp"
+                app:cardUseCompatPadding="true"
+                app:contentPadding="10dp">
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <com.google.android.material.imageview.ShapeableImageView
+                        android:id="@+id/profiledonneur"
+                        android:layout_width="40dp"
+                        android:layout_height="40dp"
+                        android:layout_marginEnd="10dp"
+                        android:background="#777272"
+                        android:src="@drawable/ic_person"
+                        />
+
+                    <TextView
+                        android:id="@+id/donneurNomTv"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Youssef El Biker"
+                        android:layout_toEndOf="@id/profiledonneur"
+                        android:fontFamily="@font/montserratsemibold"
+                        android:textSize="14sp"
+                        android:layout_marginTop="12dp"
+                        android:textColor="#222" />
+
+
+                </RelativeLayout>
+            </com.google.android.material.card.MaterialCardView>
+            <Button
+                android:id="@+id/joinEventButton"
+                android:layout_width="match_parent"
+                android:layout_marginStart="32dp"
+                android:layout_marginEnd="32dp"
+                android:background="@drawable/bg_badge_distance"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="25dp"
+                android:fontFamily="@font/montserratsemibold"
+                android:text="JOIN EVENT"
+                android:textColor="#FFFFFF"
+                android:layout_below="@+id/donneurProfileCv"
+                android:textStyle="bold" />
+
+        </RelativeLayout>
+    </ScrollView>
+</RelativeLayout>

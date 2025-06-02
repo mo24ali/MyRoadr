@@ -2,47 +2,78 @@
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:padding="16dp"
-    android:background="@android:color/white">
+    android:background="@android:color/white"
+    android:padding="16dp">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        android:gravity="center_horizontal"
+        android:paddingBottom="32dp">
 
+        <!-- Titre principal -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Edit Cycling Event"
+            android:textSize="22sp"
+            android:textStyle="bold"
+            android:textColor="@android:color/black"
+            android:layout_marginTop="8dp"
+            android:layout_marginBottom="8dp" />
+
+        <!-- Titre -->
         <EditText
             android:id="@+id/titleInput"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
             android:hint="Titre"
-            android:inputType="text" />
+            android:background="@android:drawable/editbox_background" />
 
+        <!-- Description -->
         <EditText
             android:id="@+id/descriptionInput"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginTop="12dp"
             android:hint="Description"
-            android:inputType="textMultiLine" />
+            android:inputType="textMultiLine"
+            android:minLines="3"
+            android:background="@android:drawable/editbox_background" />
 
+        <!-- Lieu -->
         <EditText
             android:id="@+id/locationNameInput"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Nom du lieu" />
+            android:layout_marginTop="12dp"
+            android:hint="Nom du lieu"
+            android:background="@android:drawable/editbox_background" />
 
+        <!-- Date -->
         <EditText
             android:id="@+id/dateInput"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginTop="12dp"
             android:hint="Date (YYYY-MM-DD)"
             android:focusable="false"
-            android:clickable="true" />
+            android:clickable="true"
+            android:background="@android:drawable/editbox_background"
+            android:drawableEnd="@drawable/calendar_range"
+            android:drawablePadding="8dp"
+            android:padding="12dp" />
 
+        <!-- Bouton Enregistrer -->
         <Button
             android:id="@+id/btnSave"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Enregistrer"
-            android:layout_marginTop="16dp" />
+            android:layout_marginTop="24dp"
+            android:background="@drawable/bg_badge_distance"
+            android:textColor="@android:color/white" />
     </LinearLayout>
 </ScrollView>

@@ -6,17 +6,12 @@
     android:background="@drawable/bg_card"
     android:orientation="vertical"
     android:padding="16dp"
+    android:layout_marginEnd="32dp"
+    android:layout_marginStart="32dp"
     android:layout_gravity="bottom"
-    android:layout_margin="16dp"
+    android:layout_marginBottom="100dp"
     android:elevation="8dp"
-    android:visibility="gone">
-
-    <ImageView
-        android:id="@+id/imageIv"
-        android:layout_width="match_parent"
-        android:layout_height="200dp"
-        android:scaleType="centerCrop"
-        android:contentDescription="Image de l'offre" />
+    >
 
     <TextView
         android:id="@+id/titleTv"
@@ -25,6 +20,7 @@
         android:text="Titre de l'offre"
         android:textStyle="bold"
         android:textSize="18sp"
+        android:fontFamily="@font/montserratsemibold"
         android:layout_marginTop="8dp" />
 
     <TextView
@@ -32,23 +28,21 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Description de l'offre"
+        android:fontFamily="@font/montserratsemibold"
         android:textSize="16sp"
         android:layout_marginTop="4dp" />
 
-    <TextView
-        android:id="@+id/addressTv"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Durée"
-        android:textSize="14sp"
-        android:textColor="#666"
-        android:layout_marginTop="2dp" />
 
     <Button
         android:id="@+id/hideCard"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Fermer"
+        android:text="Show Details"
+        android:padding="10dp"
+        android:textStyle="bold"
+        android:fontFamily="@font/montserratregular"
+        android:textColor="@color/white"
+        android:background="@drawable/bg_badge_distance"
         android:layout_marginTop="10dp"
         android:layout_gravity="end" />
 

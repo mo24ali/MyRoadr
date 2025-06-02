@@ -21,12 +21,13 @@ class Onboarding1Activity : AppCompatActivity() {
 
         }
         binding.nextButton.setOnClickListener {
-            val intent = Intent(this,LoginActivity::class.java)
+            val intent = Intent(this,Onboarding2Activity::class.java)
             startActivity(intent)
         }
 
     }
     override fun onBackPressed() {
+        super.onBackPressed()
         onBackPressedDispatcher.onBackPressed()
     }
 

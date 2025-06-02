@@ -48,6 +48,14 @@ class AdminDashboardActivity : AppCompatActivity() {
             override fun onDataChange(snapshot: DataSnapshot) {
                 val userCount = snapshot.childrenCount
                 binding.valueNbUsers.text = userCount.toString()
+
+                // ✅ Count users online
+                var onlineCount = 0
+                for (child in snapshot.children) {
+                    val isOnline = child.child("enLigne").getValue(Boolean::class.java) ?: false
+                    if (isOnline as Boolean) onlineCount++
+                }
+                binding.valueNbMetric4.text = onlineCount.toString()
             }
 
             override fun onCancelled(error: DatabaseError) {

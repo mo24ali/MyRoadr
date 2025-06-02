@@ -3,10 +3,12 @@ package com.example.myroadr.activities
 import android.content.Intent
 import android.location.Location
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import android.widget.ImageButton
 import android.widget.PopupMenu
 import android.widget.Toast
+import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.myroadr.Adpaters.CyclingEventAdapter
@@ -15,14 +17,12 @@ import com.example.myroadr.models.CyclingEvent
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.*
 import com.example.myroadr.R
+
 class MyEventsActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityMyEventsBinding
-    private lateinit var database: DatabaseReference
     private lateinit var adapter: CyclingEventAdapter
-    private val myEvents = mutableListOf<CyclingEvent>()
     private lateinit var userLocation: Location
-
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -30,25 +30,13 @@ class MyEventsActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         val uid = FirebaseAuth.getInstance().currentUser?.uid ?: return
+
         userLocation = Location("default").apply {
             latitude = 33.5731
             longitude = -7.5898
         }
 
-//        val adapter = CyclingEventAdapter(userLocation, onJoinClick = {}, onFavoriteClick = {}) {
-//            override fun onBindViewHolder(holder: CyclingEventAdapter.EventViewHolder, position: Int) {
-//                super.onBindViewHolder(holder, position)
-//
-//                // Montre uniquement ici le bouton de gestion
-//                holder.itemView.findViewById<ImageButton>(R.id.btnManage)?.apply {
-//                    visibility = View.VISIBLE
-//                    setOnClickListener {
-//                        showPopupMenu(it, getItem(position))
-//                    }
-//                }
-//            }
-//        }
-        val adapter = CyclingEventAdapter(
+        adapter = CyclingEventAdapter(
             userLocation,
             onJoinClick = {},
             onFavoriteClick = {}
@@ -56,11 +44,10 @@ class MyEventsActivity : AppCompatActivity() {
 
         binding.recyclerViewMyOffers.layoutManager = LinearLayoutManager(this)
         binding.recyclerViewMyOffers.adapter = adapter
-
-        loadMyEvents(uid, adapter)
+        loadMyEvents(uid)
     }
 
-    private fun loadMyEvents(uid: String, adapter: CyclingEventAdapter) {
+    private fun loadMyEvents(uid: String) {
         val dbRef = FirebaseDatabase.getInstance().getReference("Events")
         dbRef.orderByChild("createdBy").equalTo(uid)
             .addListenerForSingleValueEvent(object : ValueEventListener {
@@ -71,9 +58,14 @@ class MyEventsActivity : AppCompatActivity() {
                             list.add(it)
                         }
                     }
+
                     adapter.updateData(list)
 
-                    // 💡 Une fois la liste mise à jour, active les boutons "..." visibles
+                    // Affiche le message vide si aucun événement
+                    binding.textViewEmpty.visibility =
+                        if (list.isEmpty()) View.VISIBLE else View.GONE
+
+                    // Affiche les boutons "..." pour chaque item
                     binding.recyclerViewMyOffers.post {
                         for (i in list.indices) {
                             val viewHolder = binding.recyclerViewMyOffers.findViewHolderForAdapterPosition(i)
@@ -87,11 +79,11 @@ class MyEventsActivity : AppCompatActivity() {
                             }
                         }
                     }
-
-
                 }
 
-                override fun onCancelled(error: DatabaseError) {}
+                override fun onCancelled(error: DatabaseError) {
+                    Toast.makeText(this@MyEventsActivity, "Erreur de chargement", Toast.LENGTH_SHORT).show()
+                }
             })
     }
 
@@ -101,26 +93,40 @@ class MyEventsActivity : AppCompatActivity() {
         popup.setOnMenuItemClickListener {
             when (it.itemId) {
                 R.id.menu_edit -> {
-                    // Lancer un intent vers EditEventActivity
-                    val i = Intent(this, AddEditEventActivity::class.java)
-                    i.putExtra("eventId", event.id)
-                    startActivity(i)
+                    Log.d("MYEVENTS", "✏️ Modification demandée pour l’événement ID = ${event.id}")
+                    val intent = Intent(this, AddEditEventActivity::class.java)
+                    intent.putExtra("eventId", event.id)
+                    startActivity(intent)
                     true
                 }
+
+
                 R.id.menu_delete -> {
-                    val ref = FirebaseDatabase.getInstance()
-                        .getReference("Events")
-                        .child(event.id)
-                    ref.removeValue().addOnSuccessListener {
-                        Toast.makeText(this, "Événement supprimé", Toast.LENGTH_SHORT).show()
-                        recreate() // recharge la liste
-                    }
+                    AlertDialog.Builder(this)
+                        .setTitle("Confirmation de suppression")
+                        .setMessage("Voulez-vous vraiment supprimer cet événement ?")
+                        .setPositiveButton("Oui") { dialog, _ ->
+                            FirebaseDatabase.getInstance()
+                                .getReference("Events")
+                                .child(event.id)
+                                .removeValue()
+                                .addOnSuccessListener {
+                                    Toast.makeText(this, "Événement supprimé", Toast.LENGTH_SHORT).show()
+                                    recreate() // recharge la liste
+                                }
+                                .addOnFailureListener {
+                                    Toast.makeText(this, "Erreur : ${it.message}", Toast.LENGTH_SHORT).show()
+                                }
+                            dialog.dismiss()
+                        }
+                        .setNegativeButton("Annuler") { dialog, _ -> dialog.dismiss() }
+                        .show()
                     true
                 }
+
                 else -> false
             }
         }
         popup.show()
     }
-
 }

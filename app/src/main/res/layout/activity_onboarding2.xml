@@ -40,7 +40,7 @@
         android:id="@+id/descriptionTextUnlock"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:text="Culpa qui officia deserunt mollit anim id est laborum."
+        android:text="Prêt à rouler et à vivre des moments inoubliables ? Enfourchez votre vélo et partez à l’aventure !"
         android:textColor="#666666"
         android:textSize="18sp"
         android:gravity="center"

@@ -10,6 +10,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
+import androidx.appcompat.app.AlertDialog
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.lifecycleScope
@@ -78,17 +79,9 @@ class HomeFragment : Fragment() {
         val currentDate = dateFormat.format(Date())
         binding.currentD.text = currentDate
 
-        binding.browseMap.setOnClickListener {
-            findNavController().navigate(R.id.action_homeFragment_to_mapsFragment)
-        }
-
         binding.fabAddEvent.setOnClickListener {
             val intent = Intent(requireContext(), AddEventActivity::class.java)
             startActivity(intent)
-        }
-
-        binding.nearYou.setOnClickListener {
-            findNavController().navigate(R.id.action_homeFragment_to_profileFragment)
         }
 
         val userId = FirebaseAuth.getInstance().currentUser?.uid
@@ -105,7 +98,7 @@ class HomeFragment : Fragment() {
         })
 
         val recyclerView = view.findViewById<RecyclerView>(R.id.recyclerViewEvents)
-        recyclerView.layoutManager = LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
+        recyclerView.layoutManager = LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL, false)
 
         val userLocation = Location("me").apply {
             latitude = 33.6
@@ -114,9 +107,47 @@ class HomeFragment : Fragment() {
 
         adapter = CyclingEventAdapter(
             userLocation,
-            onJoinClick = { event -> Toast.makeText(requireContext(), "Join: ${event.title}", Toast.LENGTH_SHORT).show() },
-            onFavoriteClick = { event -> Toast.makeText(requireContext(), "Favorite: ${event.title}", Toast.LENGTH_SHORT).show() }
+            onJoinClick = { event ->
+                val context = requireContext()
+                val currentUser = FirebaseAuth.getInstance().currentUser
+
+                if (currentUser != null && event.id.isNotEmpty()) {
+                    AlertDialog.Builder(context)
+                        .setTitle("Confirmer")
+                        .setMessage("Voulez-vous vraiment rejoindre l’événement « ${event.title} » ?")
+                        .setPositiveButton("Oui") { dialog, _ ->
+                            val uid = currentUser.uid
+
+                            val joinedRef = FirebaseDatabase.getInstance()
+                                .getReference("Events")
+                                .child(event.id)
+                                .child("joinedUsers")
+                                .child(uid)
+
+                            joinedRef.setValue(true)
+                                .addOnSuccessListener {
+                                    Toast.makeText(context, "Inscription réussie !", Toast.LENGTH_SHORT).show()
+                                }
+                                .addOnFailureListener { e ->
+                                    Toast.makeText(context, "Erreur : ${e.message}", Toast.LENGTH_SHORT).show()
+                                }
+
+                            dialog.dismiss()
+                        }
+                        .setNegativeButton("Annuler") { dialog, _ ->
+                            dialog.dismiss()
+                        }
+                        .show()
+                } else {
+                    Toast.makeText(context, "Veuillez vous connecter", Toast.LENGTH_SHORT).show()
+                }
+            },
+
+            onFavoriteClick = { event ->
+                Toast.makeText(requireContext(), "Favori: ${event.title}", Toast.LENGTH_SHORT).show()
+            }
         )
+
         recyclerView.adapter = adapter
 
         // Load events from Firebase

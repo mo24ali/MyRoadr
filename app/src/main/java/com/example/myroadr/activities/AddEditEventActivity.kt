@@ -2,6 +2,7 @@ package com.example.myroadr.activities
 
 import android.app.DatePickerDialog
 import android.os.Bundle
+import android.util.Log
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.example.myroadr.databinding.ActivityAddEditEventBinding
@@ -16,29 +17,35 @@ class AddEditEventActivity : AppCompatActivity() {
     private var eventId: String? = null
     private val dbRef = FirebaseDatabase.getInstance().getReference("Events")
 
+    // Pour stocker les coordonnées si déjà existantes
+    private var existingLatitude = 0.0
+    private var existingLongitude = 0.0
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityAddEditEventBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
         eventId = intent.getStringExtra("eventId")
+        Log.d("ADDEDIT", "🛠️ AddEditEventActivity lancé avec eventId = $eventId")
+
 
         if (eventId != null) {
-            // Mode édition
             title = "Modifier l'événement"
             loadEventData(eventId!!)
         } else {
-            // Mode ajout
             title = "Ajouter un événement"
         }
 
         binding.dateInput.setOnClickListener { showDatePicker() }
 
         binding.btnSave.setOnClickListener {
-            if (eventId == null) {
-                createEvent()
-            } else {
-                updateEvent()
+            if (validateForm()) {
+                if (eventId == null) {
+                    createEvent()
+                } else {
+                    updateEvent()
+                }
             }
         }
     }
@@ -63,6 +70,8 @@ class AddEditEventActivity : AppCompatActivity() {
         dbRef.child(id).setValue(event).addOnSuccessListener {
             Toast.makeText(this, "Événement ajouté", Toast.LENGTH_SHORT).show()
             finish()
+        }.addOnFailureListener {
+            Toast.makeText(this, "Erreur : ${it.message}", Toast.LENGTH_SHORT).show()
         }
     }
 
@@ -71,6 +80,8 @@ class AddEditEventActivity : AppCompatActivity() {
         dbRef.child(eventId!!).setValue(updatedEvent).addOnSuccessListener {
             Toast.makeText(this, "Événement mis à jour", Toast.LENGTH_SHORT).show()
             finish()
+        }.addOnFailureListener {
+            Toast.makeText(this, "Erreur : ${it.message}", Toast.LENGTH_SHORT).show()
         }
     }
 
@@ -82,8 +93,11 @@ class AddEditEventActivity : AppCompatActivity() {
                 binding.descriptionInput.setText(it.description)
                 binding.dateInput.setText(it.date)
                 binding.locationNameInput.setText(it.locationName)
-                // TODO: Charger latitude/longitude si tu veux les éditer aussi
+                existingLatitude = it.latitude
+                existingLongitude = it.longitude
             }
+        }.addOnFailureListener {
+            Toast.makeText(this, "Erreur de chargement : ${it.message}", Toast.LENGTH_SHORT).show()
         }
     }
 
@@ -91,14 +105,36 @@ class AddEditEventActivity : AppCompatActivity() {
         val uid = FirebaseAuth.getInstance().currentUser?.uid ?: ""
         return CyclingEvent(
             id = id,
-            title = binding.titleInput.text.toString(),
-            description = binding.descriptionInput.text.toString(),
-            date = binding.dateInput.text.toString(),
-            locationName = binding.locationNameInput.text.toString(),
-            latitude = 0.0, // tu peux ajouter un champ si besoin
-            longitude = 0.0,
+            title = binding.titleInput.text.toString().trim(),
+            description = binding.descriptionInput.text.toString().trim(),
+            date = binding.dateInput.text.toString().trim(),
+            locationName = binding.locationNameInput.text.toString().trim(),
+            latitude = existingLatitude,
+            longitude = existingLongitude,
             createdBy = uid,
             participants = listOf()
         )
+    }
+
+    private fun validateForm(): Boolean {
+        return when {
+            binding.titleInput.text.isNullOrBlank() -> {
+                binding.titleInput.error = "Titre requis"
+                false
+            }
+            binding.descriptionInput.text.isNullOrBlank() -> {
+                binding.descriptionInput.error = "Description requise"
+                false
+            }
+            binding.dateInput.text.isNullOrBlank() -> {
+                binding.dateInput.error = "Date requise"
+                false
+            }
+            binding.locationNameInput.text.isNullOrBlank() -> {
+                binding.locationNameInput.error = "Lieu requis"
+                false
+            }
+            else -> true
+        }
     }
 }

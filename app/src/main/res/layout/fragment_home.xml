@@ -125,33 +125,28 @@
                 android:textSize="14sp"
                 android:fontFamily="@font/montserratregular"/>
 
-            <ImageView
-                android:layout_width="18dp"
-                android:layout_height="18dp"
-                android:layout_marginStart="4dp"
-                android:src="@drawable/chevron_left" />
         </LinearLayout>
     </LinearLayout>
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/fabAddEvent"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:contentDescription="Add Cycling Event"
+        app:srcCompat="@drawable/ic_addd"
+        android:layout_marginBottom="15dp"
+        app:backgroundTint="@color/white" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerViewEvents"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="24dp"
+        android:layout_marginBottom="12dp"
         android:clipToPadding="false"
         android:paddingStart="8dp"
         android:paddingEnd="8dp"
         android:paddingBottom="8dp"
-        android:overScrollMode="never"
-        android:scrollbars="horizontal" />
-    <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/fabAddEvent"
-        android:layout_width="60dp"
-        android:layout_height="60dp"
-        android:layout_gravity="bottom|end"
-        android:contentDescription="Add Cycling Event"
-        app:srcCompat="@drawable/ic_addd"
-        app:backgroundTint="@color/white" />
+   />
+
 
 
 </LinearLayout>

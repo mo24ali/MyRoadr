@@ -19,6 +19,7 @@
             android:layout_width="match_parent"
             android:layout_height="@dimen/app_bar_container_height"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent">
 
@@ -71,7 +72,7 @@
             android:layout_width="291dp"
             android:layout_height="56dp"
             android:layout_marginStart="@dimen/margin_16"
-            android:fontFamily="@font/poppins_medium"
+            android:fontFamily="@font/montserratsemibold"
             android:text="@string/profile_name"
             android:textColor="@color/md_theme_light_onPrimary"
             android:textSize="@dimen/font_28"
@@ -88,6 +89,7 @@
             android:text="@string/profile_status"
             android:textColor="@color/bottom"
             android:textSize="@dimen/font_16"
+            android:fontFamily="@font/montserratsemibold"
             app:layout_constraintBottom_toBottomOf="@id/app_bar_container"
             app:layout_constraintStart_toStartOf="@id/profileSmya" />
 
@@ -130,7 +132,9 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        style="@style/generalTextTitleStyle"
+                        android:fontFamily="@font/montserratsemibold"
+                        android:textSize="24sp"
+                        android:textColor="@color/white"
                         android:text="@string/account" />
 
                     <LinearLayout
@@ -143,6 +147,8 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:id="@+id/tvEmail"
+                            android:fontFamily="@font/montserratsemibold"
+                            android:textColor="@color/white"
                             style="@style/generalTextSubtitleStyle"
                             android:text="@string/user_email" />
 
@@ -169,6 +175,9 @@
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:id="@+id/buttonMyEvents"
+                                android:textSize="18sp"
+                                android:textColor="@color/white"
+                                android:fontFamily="@font/montserratsemibold"
                                 style="@style/generalTextSubtitleStyle"
                                 android:text="@string/manage" />
 
@@ -181,6 +190,7 @@
                     style="@style/generalLinearLayoutStyle"
                     android:layout_marginTop="@dimen/margin_8"
                     android:layout_width="match_parent"
+                    android:backgroundTint="@android:color/transparent"
                     android:layout_height="wrap_content">
                     <TextView
                         android:layout_width="wrap_content"
@@ -189,8 +199,11 @@
                         style="@style/generalTextSubtitleStyle"
                         android:drawablePadding="@dimen/margin_16"
                         android:text="Contact Support"
+                        android:textSize="18sp"
+                        android:textColor="@color/white"
+                        android:fontFamily="@font/montserratsemibold"
                         app:drawableStartCompat="@drawable/message"
-                        app:drawableTint="@color/md_theme_light_outline"
+                        app:drawableTint="@color/white"
                         android:clickable="true"
                         />
 
@@ -215,8 +228,11 @@
                         style="@style/generalTextSubtitleStyle"
                         android:drawablePadding="@dimen/margin_16"
                         android:text="Logout"
+                        android:textSize="18sp"
+                        android:textColor="@color/white"
+                        android:fontFamily="@font/montserratsemibold"
                         app:drawableStartCompat="@drawable/baseline_logout_24"
-                        app:drawableTint="@color/md_theme_light_outline"
+                        app:drawableTint="@color/white"
                         android:clickable="true"
                         />
 
@@ -230,10 +246,10 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_margin="@dimen/margin_16"
-                    android:fontFamily="@font/poppins_regular"
+                    android:fontFamily="@font/montserratsemibold"
                     android:gravity="center"
                     android:text="@string/footer_sentence"
-                    android:textColor="@color/md_theme_light_outline"
+                    android:textColor="@color/black"
                     android:textSize="@dimen/font_12" />
 
             </LinearLayout>

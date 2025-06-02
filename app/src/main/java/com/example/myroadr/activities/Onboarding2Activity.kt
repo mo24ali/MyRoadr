@@ -25,6 +25,7 @@ class Onboarding2Activity : AppCompatActivity() {
         }
     }
     override fun onBackPressed() {
-        onBackPressedDispatcher.onBackPressed()
+        super.onBackPressed()
+        super.onBackPressedDispatcher.onBackPressed()
     }
 }

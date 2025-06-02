@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="280dp"
+    android:layout_height="wrap_content"
+    android:background="@drawable/bg_dialog_rounded"
+    android:orientation="vertical"
+    android:padding="24dp"
+    android:gravity="center"
+    android:elevation="10dp">
+
+
+
+    <!-- Progress Spinner -->
+    <ProgressBar
+        android:layout_width="48dp"
+        android:layout_height="48dp"
+        android:indeterminate="true"
+
+        style="?android:attr/progressBarStyleLarge" />
+
+    <!-- Text -->
+    <TextView
+        android:id="@+id/loadingText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Searching Events..."
+        android:fontFamily="@font/montserratsemibold"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:textStyle="bold"
+        android:paddingTop="16dp"
+        android:textColor="#222222" />
+</LinearLayout>
+

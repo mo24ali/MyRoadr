@@ -9,6 +9,7 @@ import android.os.Bundle
 import android.widget.Button
 import android.widget.EditText
 import android.widget.Toast
+import androidx.appcompat.app.AlertDialog
 import androidx.core.app.ActivityCompat
 import com.example.myroadr.R
 import com.google.android.gms.location.FusedLocationProviderClient
@@ -57,6 +58,11 @@ class AddEventActivity : AppCompatActivity() {
             }
         }
 
+        val loadingDialog = AlertDialog.Builder(this)
+            .setView(layoutInflater.inflate(R.layout.dialog_add_event, null))
+            .setCancelable(false)
+            .create()
+
         findViewById<Button>(R.id.submitButton).setOnClickListener {
             val title = findViewById<EditText>(R.id.titleInput).text.toString()
             val desc = findViewById<EditText>(R.id.descriptionInput).text.toString()
@@ -68,18 +74,22 @@ class AddEventActivity : AppCompatActivity() {
                 return@setOnClickListener
             }
 
-            val userId = auth.currentUser?.uid ?: return@setOnClickListener
+            loadingDialog.show() // 👉 Afficher le loader ici
+
+            val userId = auth.currentUser?.uid ?: run {
+                loadingDialog.dismiss()
+                return@setOnClickListener
+            }
+
             val userRef = FirebaseDatabase.getInstance().getReference("Users").child(userId)
 
             userRef.child("username").get().addOnSuccessListener { snapshot ->
                 val username = snapshot.getValue(String::class.java) ?: "Unknown User"
 
-                if (ActivityCompat.checkSelfPermission(
-                        this,
-                        Manifest.permission.ACCESS_FINE_LOCATION
-                    ) != PackageManager.PERMISSION_GRANTED
-                ) {
+                if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION)
+                    != PackageManager.PERMISSION_GRANTED) {
                     ActivityCompat.requestPermissions(this, arrayOf(Manifest.permission.ACCESS_FINE_LOCATION), 1001)
+                    loadingDialog.dismiss()
                     return@addOnSuccessListener
                 }
 
@@ -88,7 +98,12 @@ class AddEventActivity : AppCompatActivity() {
                         val lat = location.latitude
                         val long = location.longitude
 
-                        val eventId = FirebaseDatabase.getInstance().getReference("Events").push().key ?: return@addOnSuccessListener
+                        val eventId = FirebaseDatabase.getInstance().getReference("Events").push().key
+                        if (eventId == null) {
+                            loadingDialog.dismiss()
+                            Toast.makeText(this, "Failed to generate event ID", Toast.LENGTH_SHORT).show()
+                            return@addOnSuccessListener
+                        }
                         val firebaseEvent = mapOf(
                             "id" to eventId,
                             "title" to title,
@@ -105,21 +120,26 @@ class AddEventActivity : AppCompatActivity() {
                             .child(eventId)
                             .setValue(firebaseEvent)
                             .addOnSuccessListener {
+                                loadingDialog.dismiss() // 👉 Fermer le dialog
                                 Toast.makeText(this, "Événement ajouté à Firebase", Toast.LENGTH_SHORT).show()
                                 finish()
                             }
                             .addOnFailureListener {
+                                loadingDialog.dismiss()
                                 Toast.makeText(this, "Erreur d'ajout Firebase", Toast.LENGTH_SHORT).show()
                             }
 
                     } else {
+                        loadingDialog.dismiss()
                         Toast.makeText(this, "Impossible de récupérer la position", Toast.LENGTH_SHORT).show()
                     }
                 }
 
             }.addOnFailureListener {
+                loadingDialog.dismiss()
                 Toast.makeText(this, "Erreur de récupération du nom utilisateur", Toast.LENGTH_SHORT).show()
             }
         }
+
     }
 }

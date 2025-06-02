@@ -4,6 +4,7 @@ import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import com.example.myroadr.databinding.ActivitySplashScreenBinding
+import com.google.firebase.auth.FirebaseAuth
 
 class SplashScreenActivity : AppCompatActivity() {
     private lateinit var binding: ActivitySplashScreenBinding
@@ -25,4 +26,6 @@ class SplashScreenActivity : AppCompatActivity() {
         val intent = Intent(this, Onboarding1Activity::class.java)
         startActivity(intent)
     }
+
+
 }

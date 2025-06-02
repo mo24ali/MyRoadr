@@ -5,7 +5,7 @@
     android:layout_height="wrap_content"
     android:background="@drawable/bg_card"
     android:layout_marginBottom="16dp"
-    android:padding="16dp">
+    android:padding="12dp">
 
     <!-- Message Icon -->
     <ImageView

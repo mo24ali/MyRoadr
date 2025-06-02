@@ -40,7 +40,7 @@
         android:id="@+id/descriptionText"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:text="Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia."
+        android:text="Découvrez de nouveaux lieux et vivez des aventures inoubliables, où que vous soyez."
         android:textColor="#666666"
         android:textSize="18sp"
         android:gravity="center"

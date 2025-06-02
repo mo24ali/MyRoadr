@@ -29,7 +29,7 @@
             android:layout_width="wrap_content"
             android:text="Create Cycling Event"
             android:textColor="@android:color/white"
-            android:textSize="32sp"
+            android:textSize="30sp"
             android:layout_marginStart="16dp"
             android:textStyle="bold"
             android:fontFamily="@font/montserratsemibold"

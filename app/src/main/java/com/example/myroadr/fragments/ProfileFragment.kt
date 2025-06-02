@@ -5,9 +5,13 @@ import android.content.Intent
 import android.graphics.Bitmap
 import android.graphics.BitmapFactory
 import android.os.Bundle
+import android.os.Handler
+import android.os.Looper
 import android.provider.MediaStore
 import android.view.*
+import android.widget.TextView
 import android.widget.Toast
+import androidx.appcompat.app.AlertDialog
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.lifecycleScope
 import com.example.myroadr.DB.AppDatabase
@@ -40,11 +44,48 @@ class ProfileFragment : Fragment() {
         loadProfileFromRoom()
 
         binding.LogOut.setOnClickListener {
-            FirebaseAuth.getInstance().signOut()
-            SharedPreferencesUtil.setUserLoggedIn(requireContext(), false)
-            startActivity(Intent(activity, SplashScreenActivity::class.java))
-            activity?.finish()
+            AlertDialog.Builder(requireContext())
+                .setTitle("Déconnexion")
+                .setMessage("Voulez-vous vraiment vous déconnecter ?")
+                .setPositiveButton("Oui") { _, _ ->
+                    // Afficher le dialog de chargement
+                    val dialogView = layoutInflater.inflate(R.layout.dialog_add_event, null)
+                    dialogView.findViewById<TextView>(R.id.loadingText).text = "Déconnexion en cours"
+                    val loadingDialog = AlertDialog.Builder(requireContext())
+                        .setView(dialogView)
+                        .setCancelable(false)
+                        .create()
+                    loadingDialog.show()
+
+                    // Récupérer l'UID de l'utilisateur connecté
+                    val userId = FirebaseAuth.getInstance().currentUser?.uid
+
+                    if (userId != null) {
+                        val userRef = FirebaseDatabase.getInstance().getReference("Users").child(userId)
+                        userRef.child("enLigne").setValue(false).addOnCompleteListener {
+                            // Continuer la déconnexion après la mise à jour
+                            FirebaseAuth.getInstance().signOut()
+                            SharedPreferencesUtil.setUserLoggedIn(requireContext(), false)
+                            loadingDialog.dismiss()
+
+                            startActivity(Intent(activity, SplashScreenActivity::class.java))
+                            activity?.finish()
+                        }
+                    } else {
+                        // Utilisateur null ? Déconnecte sans update
+                        FirebaseAuth.getInstance().signOut()
+                        SharedPreferencesUtil.setUserLoggedIn(requireContext(), false)
+                        loadingDialog.dismiss()
+
+                        startActivity(Intent(activity, SplashScreenActivity::class.java))
+                        activity?.finish()
+                    }
+                }
+                .setNegativeButton("Annuler", null)
+                .show()
         }
+
+
 
         binding.floatingAddPicActionButton.setOnClickListener {
             val intent = Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI)
